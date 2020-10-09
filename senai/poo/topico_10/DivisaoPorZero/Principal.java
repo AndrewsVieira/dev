@@ -22,15 +22,14 @@ public class Principal {
 
                 repetir = false;
             }
-
+            catch (DivisionByZeroException divisionByZeroException) {
+                System.err.printf("%nExceção: %s%n", divisionByZeroException);
+                System.out.print("Zero é um denominador inválido!\n\n");
+            }
             catch (InputMismatchException inputMismatchException) {
                 System.err.printf("%nExceção: %s%n", inputMismatchException);
                 scanner.next(); // descartar o restante da entrada
                 System.out.print("Apenas números inteiros são permitidos!\n\n");
-            }
-            catch (ArithmeticException arithmeticException) {
-                System.err.printf("%nExceção: %s%n", arithmeticException);
-                System.out.print("Zero é um denominador inválido!\n\n");
             }
         } while (repetir);
     }

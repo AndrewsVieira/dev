@@ -3,15 +3,15 @@ public class MinhaExcecao extends Exception {
         super();
     }
 
-    public MinhaExcecao(String message){
-        super(message);
+    public MinhaExcecao(String menssage){
+        super(menssage);
     }
 
     public MinhaExcecao(Throwable throwable) {
         super(throwable);
     }
 
-    public MinhaExcecao(String message, Throwable throwable) {
-        super(message, throwable);
+    public MinhaExcecao(String menssage, Throwable throwable) {
+        super(menssage, throwable);
     }
 }
