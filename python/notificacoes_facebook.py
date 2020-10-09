@@ -1,4 +1,5 @@
 from selenium import webdriver
+
 print("Vamos entrar na sua conta do Facebook e ver quantas notificações pendentes você possui.")
 
 # entrada de dados
