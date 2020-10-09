@@ -3,7 +3,7 @@ public class DivisionByZeroException extends ArithmeticException {
         super();
     }
 
-    public DivisionByZeroException(String menssage){
-        super(menssage);
+    public DivisionByZeroException(String message){
+        super(message);
     }
 }
