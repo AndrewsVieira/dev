@@ -6,7 +6,7 @@ from datetime import datetime
 from PIL import Image
 
 class PhotoOrganizer:
-    extensions = ['jpg', 'jpeg', 'JPG', 'JPEG']
+    extensions = ['jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG']
 
     def folder_path_from_photo_date(self, file):
         date = self.photo_shooting_date(file)
