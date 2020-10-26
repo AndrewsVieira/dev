@@ -1,3 +1,6 @@
+link para um site que me ajudou com esse conteúdo
+http://devfuria.com.br/python/manipulando-arquivos-de-texto/
+
 Faça um programa que leia um arquivo texto contendo uma lista de endereços IP e gere um outro arquivo, contendo um relatório dos endereços IP válidos e inválidos.
     O arquivo de entrada possui o seguinte formato:
 200.135.80.9
