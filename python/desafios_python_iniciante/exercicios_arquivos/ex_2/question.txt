@@ -1,3 +1,9 @@
+sites que ajudaram:
+https://www.programiz.com/python-programming/methods/list/append
+http://excript.com/python/introducao-as-string-python.html#:~:text=valores%22%20e%20etc.-,CONCATENAR,a%20esquerda%20de%20outra%20string.
+https://pt.stackoverflow.com/questions/308346/como-imprimir-as-informa%C3%A7%C3%B5es-no-formato-de-tabela-em-python
+https://pt.stackoverflow.com/questions/262184/o-que-utilizar-para-formatar-uma-string-ou-format
+
 A ACME Inc., uma empresa de 500 funcionários, está tendo problemas de espaço em disco no seu servidor de arquivos. Para tentar resolver este problema, o Administrador de Rede precisa saber qual o espaço ocupado pelos usuários, e identificar os usuários com maior espaço ocupado. Através de um programa, baixado da Internet, ele conseguiu gerar o seguinte arquivo, chamado "usuarios.txt":
 alexandre       456123789
 anderson        1245698456
