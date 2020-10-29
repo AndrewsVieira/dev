@@ -1,3 +1,5 @@
+from support import *
+
 users_txt = open('users.txt', 'r').readlines()
 # print(txt)
 
@@ -9,7 +11,7 @@ for text in users_txt:
     size = text[16:-1]
 
     # lista criada apenas para preencher a lista principal "list_names_sizes"
-    list_temporary = [name, size]
+    list_temporary = [size, name]
 
     list_names_sizes.append(list_temporary)
 
@@ -21,26 +23,28 @@ string += '{:<10s}{:<15s}{:<20s}{:<10s}\n\n'.format(
 # variáveis da tabela
 user = ''
 size = 0
-percentage = 0.0
+percent = 0.0
 total_size = 0
 count = 0
 
 for i in list_names_sizes:
-    i[1] = int(i[1])
-    total_size += i[1]
+    i[0] = int(i[0])
+    total_size += i[0]
 
-total_size = total_size/1024/1024
+total_size = convert_to_megabyts(total_size)
+
+list_names_sizes = order_list(list_names_sizes)
 
 for i in list_names_sizes:
-    i[1] = int(i[1])
+    i[0] = int(i[0])
 
-    user = i[0]
-    size = i[1]/1024/1024
-    percentage = (size / total_size)*100
+    user = i[1]
+    size = convert_to_megabyts(i[0])
+    percent = percentage(size, total_size)
     index = count + 1
 
     string += '{:<10d}{:<15s}{:>10.2f} MB {:>15.2f} %\n'.format(
-        index, user, size, percentage)
+        index, user, size, percent)
 
     count += 1
 
