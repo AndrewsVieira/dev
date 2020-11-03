@@ -22,8 +22,10 @@ public class TicTacToe {
             int position = scanner.nextInt();
             ticTacToe.setTicTacToe(symbol, position);
             System.out.println(ticTacToe);
-            gameOver = ticTacToe.checkWinningSequences(symbol);
-            congratulations(symbol);
+            if (ticTacToe.checkWinningSequences(symbol)) {
+                congratulations(symbol);
+                gameOver = true;
+            }
             symbols.change();
         }
 

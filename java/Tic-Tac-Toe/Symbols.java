@@ -6,7 +6,7 @@ public class Symbols {
         setTurnIndex(this.turnIndex);
     }
 
-    public void setTurnIndex(int index) {
+    private void setTurnIndex(int index) {
         this.turnIndex = this.turnIndex == 0 ? 1 : 0;
     }
 
@@ -20,6 +20,6 @@ public class Symbols {
 
     @Override
     public String toString() {
-        return String.format("%s", this.options[getTurnIndex()]);
+        return String.format("%s", getSymbol(getTurnIndex()));
     }
 }
