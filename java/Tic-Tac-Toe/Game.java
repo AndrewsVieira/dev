@@ -10,8 +10,7 @@ public class Game {
 
     public void setTicTacToe(String symbol, int index) {
         Symbols symbols = new Symbols();
-        this.ticTacToe[index] = symbol.equals(symbols.getSymbol(0)) || symbol.equals(symbols.getSymbol(1)) ? symbol
-                : null;
+        this.ticTacToe[index] = symbol.equals(symbols.getSymbol(0)) || symbol.equals(symbols.getSymbol(1)) ? symbol : null;
     }
 
     public String getTicTacToe(int index) {
