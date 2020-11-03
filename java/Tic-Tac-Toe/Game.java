@@ -10,10 +10,6 @@ public class Game {
 
     public void setTicTacToe(String symbol, int index) {
         Symbols symbols = new Symbols();
-        // temporário
-        System.out.println(symbols.getSymbol(0));
-        System.out.println(symbols.getSymbol(1));
-        //
         this.ticTacToe[index] = symbol.equals(symbols.getSymbol(0)) || symbol.equals(symbols.getSymbol(1)) ? symbol
                 : null;
     }
@@ -47,7 +43,7 @@ public class Game {
             { 0, 4, 8 }, 
             { 2, 4, 6 } 
         };
-        
+
         for (int[] sequence : winningSequences) {
             if (this.ticTacToe[sequence[0]].equals(symbol) && this.ticTacToe[sequence[1]].equals(symbol)
                     && this.ticTacToe[sequence[2]].equals(symbol)) {
