@@ -1,0 +1,20 @@
+import javax.swing.JFrame;
+
+public class GUIDemo {
+	public static void main(String[] args) {
+		JFrame frame = null;
+
+//		frame = new PrincipalFrame();
+//		frame = new ButtonFrame();
+//		frame = new BorderLayoutFrame();
+//		frame = new FlowLayoutFrame();
+//		frame = new GridLayoutFrame();
+//		frame = new BoxLayoutFrame();
+//		frame = new GridBagLayoutFrame();
+//		frame = new NullLayoutFrame();
+//		frame = new PanelFrame();
+		frame = new InputFieldsFrame();
+		
+		frame.setVisible(true);
+	}
+}
