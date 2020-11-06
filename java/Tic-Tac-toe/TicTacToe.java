@@ -11,12 +11,10 @@ public class TicTacToe {
 
 	private void init() {
         Symbols symbols = new Symbols();
-        /** Criação do cenário e desenhando-o */
         Game ticTacToe = new Game();
         wellcome();
         System.out.println(ticTacToe);
         boolean gameOver = false;
-        /** motor do jogo, enquanto o jogo não terminar ele fica rodando */
         while (!gameOver) {
             String symbol = symbols.toString(); 
             System.out.print("Escolha a posição: ");
@@ -25,6 +23,10 @@ public class TicTacToe {
             System.out.println(ticTacToe);
             if (ticTacToe.checkWinningSequences(symbol)) {
                 congratulations(symbol);
+                gameOver = true;
+            }
+            if (ticTacToe.checkTie()) {
+                System.out.println("Deu velha!!\n");
                 gameOver = true;
             }
             symbols.change();
