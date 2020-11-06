@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 public class TicTacToe {
     public static Scanner scanner = new Scanner(System.in);
 
@@ -8,7 +10,8 @@ public class TicTacToe {
         ticTacToe.init();
     }
 
-    private void init() {
+
+	private void init() {
         Symbols symbols = new Symbols();
         /** Criação do cenário e desenhando-o */
         Game ticTacToe = new Game();

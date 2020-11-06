@@ -1,0 +1,51 @@
+ActionEventFrame 
+--> tem que herdar de Jframe
+--> para tratamento de eventos precisam ser implementadas as interfaces LISTENER
+--> tem um LISTENER para cada evento
+--> para o evento action tem a ActionLestener
+--> declarar uma classe dentro de outra classe
+--> criar uma classe privada dentro de uma classe publica
+	public class ActionEventFrame {
+		...
+		
+		
+		private class ActionEventHandler implements ActionListener {
+			// muitas interfaces tem métodos que são obrigatórios de serem implementados
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String msg = "";
+				
+				System.out.printf("%s\n, e.getSource()); // getSurce() é um método que mostra qual foi o evento que o chamou
+			}
+		}
+	}
+	
+--> addActionLiestener(handler) // handler seria um objeto criado da classe ActionEventHandler
+--> getActionCommand() // método que retorna String, a String do evento
+--> pode também, além de usar uma classe interna, como mostrado, usar uma classe oculta
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+----------------------------------------------------------------------------------------------------------------------------------------------------
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+ItemeventFrame
+--> classe anônima - interessante quando usada somente uma vez
+	btn.addActionListener(new ActionListner() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String msg = "Clicou no btn:\n";
+			
+			// continuação do código
+		}
+	});
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+----------------------------------------------------------------------------------------------------------------------------------------------------
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+ListSelectionFrame
+--> 	
+	
+	
+	
+

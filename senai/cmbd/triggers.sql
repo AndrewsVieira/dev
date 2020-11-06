@@ -1,0 +1,35 @@
+CREATE OR REPLACE FUNCTION trg_teste()
+RETURNS trigger AS $$
+BEGIN
+	RAISE NOTICE 'OPERAÇÃO: %', PG_OP;
+	RAISE NOTICE 'NOVO %', NEW.nome;
+	RAISE NOTICE 'ANTIGO: %', OLD.nome;
+END
+$$ LANGUAGE 'plpgsql'
+
+CREATE TRIGGER tr_teste()
+BEFORE INSERT OR UPDATE OR DELETE ON cliente
+FOR EACH ROW 
+EXECUTE PROCEDURE trg_teste();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
