@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import javax.swing.JFrame;
-
 public class TicTacToe {
     public static Scanner scanner = new Scanner(System.in);
 
