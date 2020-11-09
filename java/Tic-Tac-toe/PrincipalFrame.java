@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 public class PrincipalFrame extends JFrame {
     private static final int NUM_BTN = 9;
 
-    JButton[] btns = new JButton[NUM_BTN];
-    int sizeArrayBtns = btns.length;
+    private JButton[] btns = new JButton[NUM_BTN];
+    private int sizeArrayBtns = btns.length;
 
     public PrincipalFrame(String title) {
         super(title);
