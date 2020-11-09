@@ -46,6 +46,7 @@ public class InputFieldsFrame extends JFrame {
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		setContentPane(contentPane);
+		// setSize(1000, 650);	
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

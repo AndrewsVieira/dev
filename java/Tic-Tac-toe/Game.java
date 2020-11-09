@@ -1,7 +1,9 @@
 public class Game {
     private static final int NUM_FIELDS = 9;
-
+    
     String[] ticTacToe = new String[9];
+    int[][] winningSequences = { { 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 }, { 0, 3, 6 }, { 1, 4, 7 }, { 2, 5, 8 },
+            { 0, 4, 8 }, { 2, 4, 6 } };
 
     public Game() {
         for (int i = 0; i < NUM_FIELDS; i++) {
@@ -28,8 +30,6 @@ public class Game {
     }
 
     public boolean checkWinningSequences(String symbol) {
-        int[][] winningSequences = { { 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 }, { 0, 3, 6 }, { 1, 4, 7 }, { 2, 5, 8 },
-                { 0, 4, 8 }, { 2, 4, 6 } };
 
         for (int[] sequence : winningSequences) {
             if (this.ticTacToe[sequence[0]].equals(symbol) && this.ticTacToe[sequence[1]].equals(symbol)
@@ -53,5 +53,4 @@ public class Game {
         System.out.printf("count = %d\n", count);
         return count == 9 ? true : false;
     }
-
 }

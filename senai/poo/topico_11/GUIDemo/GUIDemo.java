@@ -5,7 +5,7 @@ public class GUIDemo {
 		JFrame frame = null;
 
 		// frame = new PrincipalFrame();
-		frame = new ButtonFrame();
+		// frame = new ButtonFrame();
 		// frame = new BorderLayoutFrame();
 		// frame = new FlowLayoutFrame();
 		// frame = new GridLayoutFrame();
@@ -15,7 +15,7 @@ public class GUIDemo {
 		// frame = new PanelFrame();
 		// frame = new InputFieldsFrame();
 		// frame = new EventFrame();
-		// frame = new ActionEventFrame();
+		frame = new ActionEventFrame();
 		// frame = new ItemEventFrame();
 		// frame = new ListSelectionFrame();
 		
