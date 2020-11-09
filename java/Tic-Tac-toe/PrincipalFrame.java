@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.EventListener;
 
 public class PrincipalFrame extends JFrame {
     private static final int NUM_BTN = 9;
@@ -48,10 +47,11 @@ public class PrincipalFrame extends JFrame {
 
             // uso do for para percorrer o array btns
             for (int i = 0; i < sizeArrayBtns; i++) {
-                // uso do if para verificar em qual btn que aconteceu o click
+                // uso do if para verificar em qual btn que aconteceu o evento(click)
                 if (e.getSource() == btns[i]) {
                     btns[i].setText(symbolTurnIndex);
                     position = i;
+                    // mudar a cor do botão dependendo do symbolTurnIndex (X/O)
                     if (symbolTurnIndex == "X") {
                         btns[i].setBackground(Color.CYAN);
                     } else {
@@ -66,6 +66,10 @@ public class PrincipalFrame extends JFrame {
                 System.out.println(game.toString());
                 
                 if (game.checkWinningSequences(symbolTurnIndex) || game.checkTie()) {
+                    // parar os eventos de click's quando terminar o jogo
+                    for (int i = 0; i < sizeArrayBtns; i++) {
+                        btns[i].removeActionListener(this);
+                    }
                     System.out.println("Game-over");
                 }
             }
