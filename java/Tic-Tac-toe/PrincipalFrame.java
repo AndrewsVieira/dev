@@ -41,6 +41,7 @@ public class PrincipalFrame extends JFrame {
         private Symbols symbol = new Symbols();
         private String symbolTurnIndex;
         private Game game = new Game();
+        private boolean winsMessage;
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -65,7 +66,6 @@ public class PrincipalFrame extends JFrame {
             }
             if (position > -1) {
                 game.setTicTacToe(symbolTurnIndex, position);
-                System.out.println(game.toString());
 
                 if (game.checkWinningSequences(symbolTurnIndex) || game.checkTie()) {
                     // parar os eventos de click's quando terminar o jogo
@@ -73,22 +73,44 @@ public class PrincipalFrame extends JFrame {
                         btns[i].removeActionListener(this);
                     }
                     // caixa de diálogo
-                    int answer = JOptionPane.showConfirmDialog(null,
-                            "The symbols '" + symbolTurnIndex + "' wins!\nWould you like to play again?");
-                    if (answer == JOptionPane.OK_OPTION) {
-                        setVisible(false);
-                        // reiniciar o jogo
-                        JFrame frame = new PrincipalFrame("Tic-Tac-Toe");
-                        frame.setVisible(true);
-                    } else if (answer == JOptionPane.NO_OPTION) {
-                        setVisible(false);
+    
+                    if (game.checkWinningSequences(symbolTurnIndex)) {
+                        winsMessage = true; // X/O ganhou
+                        confirmDialog(winsMessage);
+                    } else {
+                        winsMessage = false; // foi empate
+                        confirmDialog(winsMessage);
                     }
-
-                    System.out.println("Game-over");
                 }
             }
 
             symbol.change();
+        }
+
+        private void confirmDialog(boolean msg) {
+            if (msg) {
+                int answer = JOptionPane.showConfirmDialog(null,
+                        "The symbols '" + symbolTurnIndex + "' wins!\nWould you like to play again?");
+                if (answer == JOptionPane.OK_OPTION) {
+                    setVisible(false);
+                    // reiniciar o jogo
+                    JFrame frame = new PrincipalFrame("Tic-Tac-Toe");
+                    frame.setVisible(true);
+                } else if (answer == JOptionPane.NO_OPTION) {
+                    setVisible(false);
+                }
+            } else {
+                int answer = JOptionPane.showConfirmDialog(null,
+                        "The game tied!\nWould you like to play again?");
+                if (answer == JOptionPane.OK_OPTION) {
+                    setVisible(false);
+                    // reiniciar o jogo
+                    JFrame frame = new PrincipalFrame("Tic-Tac-Toe");
+                    frame.setVisible(true);
+                } else if (answer == JOptionPane.NO_OPTION) {
+                    setVisible(false);
+                }
+            }
         }
     }
 }
