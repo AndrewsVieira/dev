@@ -50,7 +50,6 @@ public class Game {
                 count++;
             }
         }
-        System.out.printf("count = %d\n", count);
         return count == 9 ? true : false;
     }
 }
