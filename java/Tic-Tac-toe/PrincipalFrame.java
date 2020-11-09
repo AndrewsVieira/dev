@@ -12,12 +12,10 @@ public class PrincipalFrame extends JFrame {
 
     private JButton[] btns = new JButton[NUM_BTN];
     private int sizeArrayBtns = btns.length;
-    private String title;
 
     public PrincipalFrame(String title) {
         super(title);
-        this.title = title;
-
+        
         this.setSize(640, 480);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
