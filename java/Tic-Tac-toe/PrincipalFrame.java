@@ -16,7 +16,7 @@ public class PrincipalFrame extends JFrame {
     public PrincipalFrame(String title) {
         super(title);
         
-        this.setSize(640, 480);
+        this.setSize(400, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         init();
