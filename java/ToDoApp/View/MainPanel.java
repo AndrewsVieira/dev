@@ -44,6 +44,7 @@ public class MainPanel extends JPanel {
         changeTaskBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.showFormPanel();
                 // TODO: tratar evento
             }
         });
