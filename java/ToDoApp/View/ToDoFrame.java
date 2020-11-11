@@ -50,7 +50,7 @@ public class ToDoFrame extends JFrame {
         mainPanel = new MainPanel(this);
         cardsPanel.add(mainPanel, MainPanel.class.getName());
 
-        formPanel = new FormPanel();
+        formPanel = new FormPanel(this);
         cardsPanel.add(formPanel, FormPanel.class.getName());
         
     }

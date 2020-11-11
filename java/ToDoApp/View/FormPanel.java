@@ -1,12 +1,16 @@
 package View;
+import Model.*;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -15,6 +19,8 @@ import javax.swing.JTextField;
 public class FormPanel extends JPanel {
 
     private static final Insets FIELD_INSETS = new Insets(5,10,0,0);
+
+    private ToDoFrame frame;
     
     private GridBagLayout layout;
     private GridBagConstraints constraints;
@@ -26,7 +32,9 @@ public class FormPanel extends JPanel {
     private JButton saveBtn;
     private JButton cancelBtn;
 
-    public FormPanel() {
+    public FormPanel(ToDoFrame toDoFrame) {
+        this.frame = toDoFrame;
+
         layout = new GridBagLayout();
         constraints = new GridBagConstraints();
 
@@ -41,6 +49,7 @@ public class FormPanel extends JPanel {
         label = new JLabel("Id:");
         addComponent(label, 0, 0);
         idTxt = new JTextField(30);
+        idTxt.setEditable(false);
         addComponent(idTxt, 0, 1);
 
         label = new JLabel("Tarefa:");
@@ -73,10 +82,29 @@ public class FormPanel extends JPanel {
 
     private void createCencelBtn() {
         cancelBtn = new JButton("Cancelar");
+        cancelBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.showMainPanel();
+            }
+        });
     }
 
     private void createSaveBtn() {
         saveBtn = new JButton("Salvar");
+        saveBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Task task = new Task();
+                task.setTask(taskTxt.getText());
+                task.setDescription(descriptionTxt.getText());
+                TaskDB.insert(task);
+
+                JOptionPane.showMessageDialog(FormPanel.this, "Tarefa criada com sucesso!", ToDoFrame.TITLE, JOptionPane.INFORMATION_MESSAGE);
+
+                frame.showMainPanel();
+            }
+        });
     }
 
     private void addComponent(JComponent comp, int row, int col) {
