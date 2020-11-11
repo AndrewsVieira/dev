@@ -1,3 +1,49 @@
+-- Estrutura básica de FUNCTIONS
+CREATE OR REPLACE FUNCTION incrementar(integer)
+RETURNS integer AS $$ -- integer --> tipo de retorno
+DECLARE -- declaração de variáveis
+	valor integer; -- nome da variável e tipo
+BEGIN -- início
+	valor := $1 + 1; -- $1 significa que irá utilizar o primeiro parâmetro
+	RETURN valor; -- retorno da variável do mesmo tipo de cima
+END; -- fim
+$$ LANGUAGE 'plpgsql'; -- declaração da linguagem
+
+SELECT * FROM incrementar(4); -- chamar para executar
+-- retorno = 5
+
+
+-- Estrutura básica de FUNCTIONS
+CREATE OR REPLACE FUNCTION somar(num1 integer, num2 integer)
+RETURNS integer AS $$
+DECLARE
+	valor integer;
+BEGIN 
+	valor := num1 + num2;
+	RETURN valor; 
+END; 
+$$ LANGUAGE 'plpgsql'; 
+
+SELECT * FROM somar(4, 4); 
+
+-- Ultilizar uma query
+CREATE OR REPLACE FUNCTION funcionarios(integer)
+RETURNS integer AS $$
+DECLARE
+	valor integer;
+	sql varchar;
+BEGIN
+	sql := 'SELECT count(*) FROM departamento INNER JOIN funcionario
+			ON departamento.id = funcionario.id 
+			WHERE funcionario.id = $1'; -- WHERE funcionario.id= ' || $1 --> caso não funcionane
+	EXECUTE sql INTO valor;
+	RETURN valor;
+END;
+$$ LANGUAGE 'plpgsql';
+
+select * funcionarios(1);
+------------------------------------------------------------------------
+
 CREATE OR REPLACE FUNCTION getClientes()
 RETURNS SETOF cliente AS $$  -- SETOF retorna um conjunto de valores --
 BEGIN
