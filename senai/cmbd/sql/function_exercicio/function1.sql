@@ -24,3 +24,14 @@ $$ LANGUAGE 'plpgsql';
 
 SELECT * FROM set_salario(1);
 SELECT * FROM funcionario;
+
+----
+
+
+select * from set_salario(1);
+
+update funcionario set salario = 0 where id = 1;
+
+select f.nome, f.salario, p.salario_hora, pp.horas_trabalhadas from funcionario as f 
+inner join pesquisador as p on f.id = p.id_funcionario
+inner join projeto_pesquisador as pp on p.id = pp.id_pesquisador
