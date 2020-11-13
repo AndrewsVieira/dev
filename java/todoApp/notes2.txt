@@ -1,0 +1,31 @@
+anotações da aula 2
+
+fazer os campos ficarem fazios novamente após um cadastro
+    adicionar um evento ComponentAdapter() -- que implementa uma ComponentListener e sobrescreve os métodos obrigatórios
+        @Override no componentShown
+        preencher os campos com vazio com setTexte("");
+
+prencher a lista com as tarefas criadas
+    TableModel é uma classe que armazena o conteúdo de dentro de um JTable mas é só com Strings
+    criar um TableModel específico para tarefas
+    criar uma classe e extender uma AbstractTableModel
+        criar uma lista de tarefas
+        criar array de string (colunas) com id, nome e descrição
+        sobrescrever três métodos obrigatórios da classe pai
+            linhas é tarefas.size()
+            colunas é colunas.length;
+        sobrescrever o getColumnName(int column)
+
+recarregar o panel de lista de tarefas
+    criar um método para recarregar no tarefaListPanel
+        chamar um método carregar
+    criar o método carregar no tableModel
+    chamara o método recarregar dentro do método que carrega a tela de tarefas
+    avisar ao JTable que os dados mudaram
+        disparar um evento fireTableDataCanged() dentro do método carregar()
+
+
+fazer o update
+    adicionar o evento em cada linha, então usar tabela.getSelectionModel().addListSelectionListener(new ListSelectionListener())
+
+
