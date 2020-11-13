@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 
 public class MainPanel extends JPanel {
-    ToDoFrame frame;
+    TodoFrame frame;
 
     private JButton addTaskBtn;
     private JButton changeTaskBtn;
@@ -27,7 +27,7 @@ public class MainPanel extends JPanel {
     private JTable tableTask;
     private TaskTableModel tableModel;
 
-    public MainPanel(ToDoFrame toDoFrame) {
+    public MainPanel(TodoFrame toDoFrame) {
         this.frame = toDoFrame;
 
         setLayout(new BorderLayout(10, 10));
@@ -67,7 +67,7 @@ public class MainPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Task task = tableModel.getTask(tableTask.getSelectedRow());
                 int answer = JOptionPane.showConfirmDialog(MainPanel.this, "Deseja remover esta tarefa?",
-                        ToDoFrame.TITLE, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        TodoFrame.TITLE, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (answer == JOptionPane.YES_OPTION) {
                     TaskDB.delete(task);
                     tableModel.delete(task);

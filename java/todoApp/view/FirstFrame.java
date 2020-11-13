@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class HomePanel extends JPanel {
-    private ToDoFrame frame;
+public class FirstFrame extends JPanel {
+    private TodoFrame frame;
     private JButton btn;
 
-    public HomePanel(ToDoFrame toDoFrame) {
+    public FirstFrame(TodoFrame toDoFrame) {
 
         this.frame = toDoFrame;
 

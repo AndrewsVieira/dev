@@ -1,14 +1,14 @@
 import javax.swing.SwingUtilities;
 
-import view.ToDoFrame;
+import view.TodoFrame;
 
-public class ToDoApp {
+public class TodoApp {
     public static void main(String[] args) {
         
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run() {
-                ToDoFrame frame = new ToDoFrame();
+                TodoFrame frame = new TodoFrame();
                 frame.draw();
             }
         });

@@ -7,17 +7,17 @@ import model.Task;
 
 import java.awt.CardLayout;
 
-public class ToDoFrame extends JFrame {
+public class TodoFrame extends JFrame {
     public static String TITLE = "TODO App";
 
     private CardLayout layout;
     private JPanel cardsPanel;
 
-    private HomePanel homePanel;
+    private FirstFrame homePanel;
     private MainPanel mainPanel;
     private FormPanel formPanel;
     
-    public ToDoFrame() {
+    public TodoFrame() {
         super(TITLE);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,8 +48,8 @@ public class ToDoFrame extends JFrame {
     }
     
     private void createCards() {
-        homePanel = new HomePanel(this);
-        cardsPanel.add(homePanel, HomePanel.class.getName());
+        homePanel = new FirstFrame(this);
+        cardsPanel.add(homePanel, FirstFrame.class.getName());
 
         mainPanel = new MainPanel(this);
         cardsPanel.add(mainPanel, MainPanel.class.getName());

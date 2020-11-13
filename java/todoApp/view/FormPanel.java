@@ -24,7 +24,7 @@ public class FormPanel extends JPanel {
 
     private static final Insets FIELD_INSETS = new Insets(5, 10, 0, 0);
 
-    private ToDoFrame frame;
+    private TodoFrame frame;
     private Task task;
 
     private GridBagLayout layout;
@@ -37,7 +37,7 @@ public class FormPanel extends JPanel {
     private JButton saveBtn;
     private JButton cancelBtn;
 
-    public FormPanel(ToDoFrame toDoFrame) {
+    public FormPanel(TodoFrame toDoFrame) {
         this.frame = toDoFrame;
 
         layout = new GridBagLayout();
@@ -130,12 +130,12 @@ public class FormPanel extends JPanel {
 
                 if (FormPanel.this.task == null) {
                     TaskDB.insert(task);
-                    JOptionPane.showMessageDialog(FormPanel.this, "Tarefa criada com sucesso!", ToDoFrame.TITLE,
+                    JOptionPane.showMessageDialog(FormPanel.this, "Tarefa criada com sucesso!", TodoFrame.TITLE,
                             JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     task.setId(Integer.parseInt(idTxt.getText()));
                     TaskDB.update(task);
-                    JOptionPane.showMessageDialog(FormPanel.this, "Tarefa alterada com sucesso!", ToDoFrame.TITLE,
+                    JOptionPane.showMessageDialog(FormPanel.this, "Tarefa alterada com sucesso!", TodoFrame.TITLE,
                             JOptionPane.INFORMATION_MESSAGE);
                 }
 
