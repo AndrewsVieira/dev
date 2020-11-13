@@ -1,7 +1,6 @@
 package view;
 
 import model.Task;
-import model.TaskDB;
 
 import java.util.ArrayList;
 import java.util.List;
