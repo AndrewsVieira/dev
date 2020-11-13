@@ -1,6 +1,6 @@
 import javax.swing.SwingUtilities;
 
-import View.ToDoFrame;
+import view.ToDoFrame;
 
 public class ToDoApp {
     public static void main(String[] args) {

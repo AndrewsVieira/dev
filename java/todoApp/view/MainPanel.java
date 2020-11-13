@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -9,6 +9,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.FlowLayout;
 
 public class MainPanel extends JPanel {
     ToDoFrame frame;
@@ -30,6 +31,10 @@ public class MainPanel extends JPanel {
 
     private void initBtns() {
         JPanel panel = new JPanel();
+        // alinhar os botoes a direita
+        FlowLayout layout = (FlowLayout) panel.getLayout();
+        layout.setAlignment(FlowLayout.RIGHT);
+
 
         addTaskBtn = new JButton("Adicionar");
         addTaskBtn.addActionListener(new ActionListener() {

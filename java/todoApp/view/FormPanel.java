@@ -1,7 +1,8 @@
-package View;
-import Model.*;
+package view;
+import model.*;
 
 import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -71,6 +72,9 @@ public class FormPanel extends JPanel {
     
     private void createBtns() {
         JPanel btnPanel = new JPanel();
+        FlowLayout layout = (FlowLayout) btnPanel.getLayout();
+        layout.setAlignment(FlowLayout.LEFT);
+
         createSaveBtn();
         btnPanel.add(saveBtn);
 
