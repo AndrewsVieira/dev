@@ -3,6 +3,8 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.Task;
+
 import java.awt.CardLayout;
 
 public class ToDoFrame extends JFrame {
@@ -36,10 +38,12 @@ public class ToDoFrame extends JFrame {
     }
     
     public void showMainPanel() {
+        mainPanel.reload();
         layout.show(cardsPanel, MainPanel.class.getName());
     }
 
-    public void showFormPanel() {
+    public void showFormPanel(Task task) {
+        formPanel.setTask(task);
         layout.show(cardsPanel, FormPanel.class.getName());
     }
     

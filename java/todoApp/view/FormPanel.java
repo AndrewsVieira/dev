@@ -1,4 +1,5 @@
 package view;
+
 import model.*;
 
 import java.awt.GridBagLayout;
@@ -6,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -19,10 +22,11 @@ import javax.swing.JTextField;
 
 public class FormPanel extends JPanel {
 
-    private static final Insets FIELD_INSETS = new Insets(5,10,0,0);
+    private static final Insets FIELD_INSETS = new Insets(5, 10, 0, 0);
 
     private ToDoFrame frame;
-    
+    private Task task;
+
     private GridBagLayout layout;
     private GridBagConstraints constraints;
 
@@ -39,11 +43,32 @@ public class FormPanel extends JPanel {
         layout = new GridBagLayout();
         constraints = new GridBagConstraints();
 
+        task = null;
+
         setLayout(layout);
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                if (task == null) {
+                    idTxt.setText("");
+                    taskTxt.setText("");
+                    descriptionTxt.setText("");
+                } else {
+                    idTxt.setText(Integer.toString(task.getId()));
+                    taskTxt.setText(task.getTask());
+                    descriptionTxt.setText(task.getDescription());
+                }
+            }
+        });
 
         createForm();
     }
-    
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
     private void createForm() {
         JLabel label;
 
@@ -66,10 +91,9 @@ public class FormPanel extends JPanel {
 
         // btns
         createBtns();
-        
 
-    } 
-    
+    }
+
     private void createBtns() {
         JPanel btnPanel = new JPanel();
         FlowLayout layout = (FlowLayout) btnPanel.getLayout();
@@ -99,12 +123,21 @@ public class FormPanel extends JPanel {
         saveBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 Task task = new Task();
                 task.setTask(taskTxt.getText());
                 task.setDescription(descriptionTxt.getText());
-                TaskDB.insert(task);
 
-                JOptionPane.showMessageDialog(FormPanel.this, "Tarefa criada com sucesso!", ToDoFrame.TITLE, JOptionPane.INFORMATION_MESSAGE);
+                if (FormPanel.this.task == null) {
+                    TaskDB.insert(task);
+                    JOptionPane.showMessageDialog(FormPanel.this, "Tarefa criada com sucesso!", ToDoFrame.TITLE,
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    task.setId(Integer.parseInt(idTxt.getText()));
+                    TaskDB.update(task);
+                    JOptionPane.showMessageDialog(FormPanel.this, "Tarefa alterada com sucesso!", ToDoFrame.TITLE,
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
 
                 frame.showMainPanel();
             }
@@ -123,10 +156,10 @@ public class FormPanel extends JPanel {
 
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = FIELD_INSETS;
-        
+
         layout.setConstraints(comp, constraints);
 
         add(comp);
     }
-    
+
 }

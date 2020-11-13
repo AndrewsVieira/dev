@@ -1,10 +1,16 @@
 package view;
 
+import model.Task;
+import model.TaskDB;
+
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -19,6 +25,7 @@ public class MainPanel extends JPanel {
     private JButton removeTaskBtn;
 
     private JTable tableTask;
+    private TaskTableModel tableModel;
 
     public MainPanel(ToDoFrame toDoFrame) {
         this.frame = toDoFrame;
@@ -35,12 +42,11 @@ public class MainPanel extends JPanel {
         FlowLayout layout = (FlowLayout) panel.getLayout();
         layout.setAlignment(FlowLayout.RIGHT);
 
-
         addTaskBtn = new JButton("Adicionar");
         addTaskBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.showFormPanel();
+                frame.showFormPanel(null);
             }
         });
         panel.add(addTaskBtn);
@@ -49,8 +55,8 @@ public class MainPanel extends JPanel {
         changeTaskBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.showFormPanel();
-                // TODO: tratar evento
+                Task task = tableModel.getTask(tableTask.getSelectedRow());
+                frame.showFormPanel(task);
             }
         });
         panel.add(changeTaskBtn);
@@ -59,7 +65,13 @@ public class MainPanel extends JPanel {
         removeTaskBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: tratar evento
+                Task task = tableModel.getTask(tableTask.getSelectedRow());
+                int answer = JOptionPane.showConfirmDialog(MainPanel.this, "Deseja remover esta tarefa?",
+                        ToDoFrame.TITLE, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (answer == JOptionPane.YES_OPTION) {
+                    TaskDB.delete(task);
+                    tableModel.delete(task);
+                }
             }
         });
         panel.add(removeTaskBtn);
@@ -70,11 +82,31 @@ public class MainPanel extends JPanel {
     }
 
     private void initTable() {
-        tableTask = new JTable();
+        tableModel = new TaskTableModel(TaskDB.list());
+
+        tableTask = new JTable(tableModel);
         tableTask.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        tableTask.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    if (tableTask.getSelectedRow() >= 0) {
+                        ableBtns();
+                    } else {
+                        disableBtns();
+                    }
+                }
+            }
+        });
+
         JScrollPane scroll = new JScrollPane(tableTask);
 
         add(scroll, BorderLayout.CENTER);
+    }
+
+    public void reload() {
+        tableModel.load(TaskDB.list());
     }
 
     private void disableBtns() {
