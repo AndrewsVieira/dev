@@ -1,9 +1,9 @@
 package view;
+import model.Task;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.Task;
 
 import java.awt.CardLayout;
 
