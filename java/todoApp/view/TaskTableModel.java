@@ -54,7 +54,7 @@ public class TaskTableModel extends AbstractTableModel {
                     value = task.getDescription();
                     break;
                 default:
-                    System.err.printf("[ERRO] Índice e coluna inválido: %d\n", colIndex);
+                    System.err.printf("[ERRO] Índice de coluna inválido: %d\n", colIndex);
                     break;
             }
         }

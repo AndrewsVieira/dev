@@ -102,7 +102,7 @@ public class FormPanel extends JPanel {
         createSaveBtn();
         btnPanel.add(saveBtn);
 
-        createCencelBtn();
+        createCancelBtn();
         btnPanel.add(cancelBtn);
 
         addComponent(btnPanel, 7, 1, 2, 1);
