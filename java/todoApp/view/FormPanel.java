@@ -108,7 +108,7 @@ public class FormPanel extends JPanel {
         addComponent(btnPanel, 7, 1, 2, 1);
     }
 
-    private void createCencelBtn() {
+    private void createCancelBtn() {
         cancelBtn = new JButton("Cancelar");
         cancelBtn.addActionListener(new ActionListener() {
             @Override
