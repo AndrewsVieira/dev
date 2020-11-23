@@ -53,7 +53,7 @@ public class PayFormPanel extends FormPanel {
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                frame.showPayPanel();
+                getFrame().showPayPanel();
                 System.out.println(this);
             }
         });
@@ -77,7 +77,7 @@ public class PayFormPanel extends FormPanel {
                     PayamentDB.update(pay);
                 }
 
-                frame.showPayPanel();
+                getFrame().showPayPanel();
                 System.out.println(this);
             }
         });

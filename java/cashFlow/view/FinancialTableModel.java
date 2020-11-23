@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 import model.FinancialRecord;
@@ -12,7 +13,7 @@ public class FinancialTableModel extends AbstractTableModel {
     private List<FinancialRecord> records = new ArrayList<>();
     private String[] columns = new String[] { "Id", "Data", "Valor", null, "Descrição" };
 
-    public void setFourthColName(String FourthColName) {
+	public void setFourthColName(String FourthColName) {
         final int INDEX = 3;
         
         if (FourthColName != null) {

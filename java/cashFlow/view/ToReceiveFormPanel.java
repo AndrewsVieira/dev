@@ -49,7 +49,7 @@ public class ToReceiveFormPanel extends FormPanel {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                frame.showToReceiveFormPanel(null);
+                getFrame().showToReceivePanel();
                 System.out.println(this);
             }
         });
@@ -72,7 +72,7 @@ public class ToReceiveFormPanel extends FormPanel {
                     RevenueDB.update(rev);
                 }
 
-                frame.showToReceivePanel();
+                getFrame().showToReceivePanel();
                 System.out.println(this);
             }
         });

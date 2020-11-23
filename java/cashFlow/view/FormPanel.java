@@ -20,7 +20,7 @@ import java.awt.BorderLayout;
 
 public abstract class FormPanel extends JPanel {
     private static Insets FIELD_INSETS = new Insets(5, 10, 0, 0);
-    Frame frame;
+    private Frame frame;
 
     private JTextField idTxt;
     private JTextField dateTxt;
@@ -46,6 +46,10 @@ public abstract class FormPanel extends JPanel {
         createFormPanel();
         createForm();
         createEmpysPanel();
+    }
+
+    public Frame getFrame() {
+        return frame;
     }
 
     public JTextField getIdTxt() {
