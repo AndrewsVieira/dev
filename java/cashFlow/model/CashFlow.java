@@ -1,9 +1,11 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 public class CashFlow {
-    private Date date;
+    // private List<String> dates;
+    private String date;
     private double revenueValue;
     private double payamentValue;
     private double accumulatedBalance;
@@ -11,6 +13,14 @@ public class CashFlow {
 
     public double getRevenueValue() {
         return revenueValue;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public double getPrevBalance() {
@@ -37,13 +47,13 @@ public class CashFlow {
         this.payamentValue = payamentValue;
     }
 
-    public Date getDate() {
-        return date;
-    }
+    // public List<String> getDates() {
+    //     return dates;
+    // }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    // public void setDates(List<String> dates) {
+    //     this.dates = dates;
+    // }
 
     public void setRevenueValue(double revenueValue) {
         this.revenueValue = revenueValue;

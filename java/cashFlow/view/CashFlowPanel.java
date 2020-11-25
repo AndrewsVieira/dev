@@ -44,6 +44,6 @@ public class CashFlowPanel extends JPanel {
     }
 
     private void reload() {
-        tableModel.load(CashFlowDB.list());
+        tableModel.load(CashFlowDB.list()); // TODO: tratar IndexOutOfBoundsException
     }
 }

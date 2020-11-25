@@ -42,16 +42,16 @@ public class CashFlowTableModel extends AbstractTableModel {
 
             switch (colIndex) {
                 case 0:
-                    value = null;
+                    value = record.getDate();
                     break;
                 case 1:
-                    value = null;
+                    value = Double.toString(record.getRevenueValue());
                     break;
                 case 2:
-                    value = null;
+                    value = Double.toString(record.getPayamentValue());
                     break;
                 case 3:
-                    value = null;
+                    value = Double.toString(record.getAccumulatedBalance());
                     break;
 
                 default:
