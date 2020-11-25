@@ -1,5 +1,7 @@
 package model;
 
+import model.utils.Provider;
+
 public class PayamentRecord extends FinancialRecord {
     private Provider provider;
 

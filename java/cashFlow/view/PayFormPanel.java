@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import dataBase.PayamentDB;
-import model.Provider;
+import model.utils.Provider;
 import model.FinancialRecord;
 import model.PayamentRecord;
 

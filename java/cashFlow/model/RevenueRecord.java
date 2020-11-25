@@ -1,5 +1,7 @@
 package model;
 
+import model.utils.Client;
+
 public class RevenueRecord extends FinancialRecord {
     private Client client;
 
