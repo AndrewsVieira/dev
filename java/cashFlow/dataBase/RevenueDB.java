@@ -13,6 +13,7 @@ public class RevenueDB {
         revenue.setId(++id);
         revenues.add(revenue);
         System.out.println(revenue);
+        reload();
     }
 
     public static void update(FinancialRecord revenue) {
@@ -20,13 +21,19 @@ public class RevenueDB {
         if (i >= 0) {
             revenues.set(i, revenue);
         }
+        reload();
     }
 
     public static void delete(FinancialRecord revenue) {
         revenues.remove(revenue);
+        reload();
     }
 
     public static List<FinancialRecord> list() {
         return revenues;
+    }
+
+    private static void reload() {
+        CashFlowDB.setRevenues(revenues);
     }
 }

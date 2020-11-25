@@ -9,12 +9,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import dataBase.CashFlowDB;
-import dataBase.PayamentDB;
-import dataBase.RevenueDB;
-import model.CashFlowRecord;
-import model.FinancialRecord;
-import model.PayamentRecord;
-import model.RevenueRecord;
 
 public class CashFlowPanel extends JPanel {
     Frame frame;
@@ -50,27 +44,6 @@ public class CashFlowPanel extends JPanel {
     }
 
     private void reload() {
-        fillCashFlowList();
         tableModel.load(CashFlowDB.list());
-    }
-
-    private void fillCashFlowList() {
-        CashFlowDB.deleteAll();
-
-        CashFlowRecord record = new CashFlowRecord();
-
-        for (FinancialRecord pay : PayamentDB.list()) {
-            for (FinancialRecord rev : RevenueDB.list()) {
-                PayamentRecord payament = (PayamentRecord) pay;
-                record.setPayament(payament);
-                RevenueRecord revenue = (RevenueRecord) rev;
-                record.setRevenue(revenue);
-
-                CashFlowDB.create(record);
-            }
-        }
-
-        System.out.println(CashFlowDB.list());
-
     }
 }

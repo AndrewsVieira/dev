@@ -1,6 +1,6 @@
 package view;
 
-import model.CashFlowRecord;
+import model.CashFlow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class CashFlowTableModel extends AbstractTableModel {
 
-    private List<CashFlowRecord> records = new ArrayList<>();
+    private List<CashFlow> records = new ArrayList<>();
     private String[] columns = new String[] { "Data", "Recebimento", "Pagamento", "Saldo Acumulado" };
 
     @Override
@@ -38,20 +38,20 @@ public class CashFlowTableModel extends AbstractTableModel {
         String value = null;
 
         if (rowIndex >= 0 && rowIndex <= records.size()) {
-            CashFlowRecord record = records.get(rowIndex);
+            CashFlow record = records.get(rowIndex);
 
             switch (colIndex) {
                 case 0:
-                    value = record.getDate();
+                    value = null;
                     break;
                 case 1:
-                    value = Double.toString(record.getRevenue().getValue());
+                    value = null;
                     break;
                 case 2:
-                    value = Double.toString(record.getPayament().getValue());
+                    value = null;
                     break;
                 case 3:
-                    value = Double.toString(record.getBalance());
+                    value = null;
                     break;
 
                 default:
@@ -63,12 +63,12 @@ public class CashFlowTableModel extends AbstractTableModel {
         return value;
     }
 
-    public void load(List<CashFlowRecord> records) {
+    public void load(List<CashFlow> records) {
         setRecords(records);
         fireTableDataChanged();
     }
 
-    private void setRecords(List<CashFlowRecord> records) {
+    private void setRecords(List<CashFlow> records) {
         this.records = records;
     }
 }

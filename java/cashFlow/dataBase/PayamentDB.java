@@ -13,6 +13,7 @@ public class PayamentDB {
         payament.setId(++id);
         payaments.add(payament);
         System.out.println(payament);
+        reload();
     }
 
     public static void update(FinancialRecord payament) {
@@ -20,13 +21,19 @@ public class PayamentDB {
         if (i >= 0) {
             payaments.set(i, payament);
         }
+        reload();
     }
 
     public static void delete(FinancialRecord payament) {
         payaments.remove(payament);
+        reload();
     }
 
     public static List<FinancialRecord> list() {
         return payaments;
+    }
+
+    private static void reload() {
+        CashFlowDB.setPayaments(payaments);
     }
 }

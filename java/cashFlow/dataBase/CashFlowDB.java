@@ -3,35 +3,31 @@ package dataBase;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.CashFlowRecord;
+import model.CashFlow;
+import model.FinancialRecord;
+import model.PayamentRecord;
+import model.RevenueRecord;
 
 public class CashFlowDB {
-    private static int id = 0;
-    private static List<CashFlowRecord> records = new ArrayList<>();
 
-    public static void create(CashFlowRecord record) {
-        record.setId(++id);
-        records.add(record);
+    private static List<CashFlow> cashFlowRecords = new ArrayList<>();
+
+    private static List<FinancialRecord> revenues = new ArrayList<>();
+    private static List<FinancialRecord> payaments = new ArrayList<>();
+
+	public static void setRevenues(List<FinancialRecord> revenues) {
+        CashFlowDB.revenues = revenues;
     }
 
-    public static void update(CashFlowRecord record) {
-        int i = records.indexOf(record);
-        if (i >= 0) {
-            records.set(i, record);
-        }
+    public static void setPayaments(List<FinancialRecord> payaments) {
+        CashFlowDB.payaments = payaments;
     }
 
-    public static void delete(CashFlowRecord record) {
-        records.remove(record);
-    }
-
-    public static List<CashFlowRecord> list() {
-        return records;
-    }
-
-	public static void deleteAll() {
-        for (CashFlowRecord record : records) {
-            records.remove(record);
-        }
+	public static List<CashFlow> list() {
+		return cashFlowRecords;
 	}
+
+
+
+
 }
