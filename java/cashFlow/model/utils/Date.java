@@ -2,7 +2,13 @@ package model.utils;
 
 public class Date {
 
-    public static int getYearOfDate(String date) {
+    private String date;
+
+    public Date(String date) {
+        this.date = date;
+    }
+
+    public int getYearOfDate() {
         int INICIAL_INDEX = 6;
         int FINAL_INDEX = 9;
         String partStr = getPartString(date, INICIAL_INDEX, FINAL_INDEX);
@@ -11,7 +17,7 @@ public class Date {
         return year;
     }
 
-    public static int getDayOfDate(String date) {
+    public int getDayOfDate() {
         int INICIAL_INDEX = 0;
         int FINAL_INDEX = 1;
         String partStr = getPartString(date, INICIAL_INDEX, FINAL_INDEX);
@@ -19,7 +25,7 @@ public class Date {
 
         int day = 0;
 
-        if (intPartStr > 0 && intPartStr <= limit(getMonthOfDate(date), getYearOfDate(date))) {
+        if (intPartStr > 0 && intPartStr <= limit(getMonthOfDate(), getYearOfDate())) {
             day = intPartStr;
         }
 
@@ -66,7 +72,7 @@ public class Date {
         return limitDayOfMonth;
     }
 
-    private static int getMonthOfDate(String date) {
+    public int getMonthOfDate() {
         int INICIAL_INDEX = 3;
         int FINAL_INDEX = 4;
         String partStr = getPartString(date, INICIAL_INDEX, FINAL_INDEX);
@@ -84,7 +90,7 @@ public class Date {
     private static String getPartString(String str, int indexIni, int indexEnd) {
         String partStr = new String();
         for (int i = indexIni; i <= indexEnd; i++) {
-            partStr += i;
+            partStr += str.charAt(i);
         }
         return partStr;
     }

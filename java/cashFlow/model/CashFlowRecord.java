@@ -32,7 +32,6 @@ public class CashFlowRecord extends FinancialRecord {
     
     @Override
     public Object getClientOrProvider() {
-        // TODO Auto-generated method stub
         return null;
     }
     
