@@ -3,6 +3,7 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.CashFlow;
 import model.FinancialRecord;
 import view.panels.CashFlowPanel;
 import view.panels.HomePanel;

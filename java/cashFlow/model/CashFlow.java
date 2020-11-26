@@ -1,10 +1,7 @@
 package model;
 
-import java.util.Date;
-import java.util.List;
-
 public class CashFlow {
-    // private List<String> dates;
+    private int id;
     private String date;
     private double revenueValue;
     private double payamentValue;
@@ -13,6 +10,14 @@ public class CashFlow {
 
     public double getRevenueValue() {
         return revenueValue;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDate() {
@@ -47,15 +52,22 @@ public class CashFlow {
         this.payamentValue = payamentValue;
     }
 
-    // public List<String> getDates() {
-    //     return dates;
-    // }
-
-    // public void setDates(List<String> dates) {
-    //     this.dates = dates;
-    // }
-
     public void setRevenueValue(double revenueValue) {
         this.revenueValue = revenueValue;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        if (obj == null) {
+            return false;
+        }
+        CashFlow cashFlow = (CashFlow) obj;
+        return this.id == cashFlow.id;
     }
 }

@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import dataBase.CashFlowDB;
+import model.CashFlow;
 import view.Frame;
 
 public class MenuPanel extends JPanel {

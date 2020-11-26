@@ -1,22 +1,21 @@
 package dataBase;
 
+import java.awt.Component;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import model.CashFlow;
 import model.FinancialRecord;
 
 public class CashFlowDB {
-
+    private static int id = 0;
     private static List<CashFlow> cashFlowRecords = new ArrayList<>();
 
     private static List<FinancialRecord> revenues = new ArrayList<>();
     private static List<FinancialRecord> payaments = new ArrayList<>();
     private static List<String> dates = new ArrayList<>();
 
-    private static double openingBalance = 0.00;
-    private static int index = 0;
+    // private static double openingBalance = 0.00;
 
     public static void setRevenues(List<FinancialRecord> revenues) {
         CashFlowDB.revenues = revenues;
@@ -31,33 +30,23 @@ public class CashFlowDB {
         return cashFlowRecords;
     }
 
-    private static void loadCashFlowList() {
+    private static void createOrReplace(CashFlow cashFlow) {
+        int i = cashFlowRecords.indexOf(cashFlow);
 
-        CashFlow cashFlow = new CashFlow();
-        setDates();
-        cashFlow.setDate(dates.get(index));
-        cashFlow.setPayamentValue(getSumOfPayamentsInDay(cashFlow.getDate()));
-        cashFlow.setRevenueValue(getSumOfRevenueInDay(cashFlow.getDate()));
-        cashFlow.setPrevBalance(openingBalance);
-        cashFlow.setAccumulatedBalance(
-                    cashFlow.getPrevBalance()
-                +   cashFlow.getRevenueValue()
-                -   cashFlow.getPayamentValue()
-        );
-        openingBalance = cashFlow.getAccumulatedBalance();
-
-        cashFlowRecords.add(cashFlow);
-
+        if (i >= 0) {
+            cashFlowRecords.set(i, cashFlow);
+        } else {
+            cashFlow.setId(++id);
+            cashFlowRecords.add(cashFlow);
+        }
     }
 
     private static double getSumOfRevenueInDay(String date) {
         double sum = 0;
 
         for (FinancialRecord rev : revenues) {
-            for (String d : dates) {
-                if (d.equals(rev.getDate()))
-                    sum += rev.getValue();
-            }
+            if (rev.getDate().equals(date))
+                sum += rev.getValue();
         }
 
         return sum;
@@ -67,10 +56,8 @@ public class CashFlowDB {
         double sum = 0;
 
         for (FinancialRecord pay : payaments) {
-            for (String d : dates) {
-                if (d.equals(pay.getDate()))
-                    sum += pay.getValue();
-            }
+            if (pay.getDate().equals(date))
+                sum += pay.getValue();
         }
 
         return sum;
@@ -78,24 +65,49 @@ public class CashFlowDB {
 
     private static void setDates() {
         for (FinancialRecord rev : revenues) {
-            dates.add(rev.getDate());
+            if (!repeatedDates(rev.getDate())) {
+                dates.add(rev.getDate());
+            }
         }
         for (FinancialRecord pay : payaments) {
-            dates.add(pay.getDate());
-        }
-
-        repeatedRemoverOfDates();
-
-    }
-
-    private static void repeatedRemoverOfDates() {
-        for (int i = 0; i < dates.size(); i++) {
-            for (int j = 0; j < dates.size(); j++) {
-                if (dates.get(i).equals(dates.get(j))) {
-                    dates.remove(j);
-                }
+            if (!repeatedDates(pay.getDate())) {
+                dates.add(pay.getDate());
             }
         }
     }
 
+    private static boolean repeatedDates(String date) {
+        boolean b = false;
+        for (String dt : dates) {
+            if (dt.equals(date)) {
+                b = true;
+                return b;
+            }
+        }
+        return b;
+    }
+
+    public static List<String> getDates() {
+        return dates;
+    }
+
+    public static void loadCashFlowList() {
+        CashFlow cashFlow;
+
+        cashFlowRecords.removeAll(cashFlowRecords);
+        dates.removeAll(dates);
+
+        setDates();
+        for (int i = 0; i < dates.size(); i++) {
+
+            cashFlow = new CashFlow();
+
+            cashFlow.setDate(dates.get(i));
+            cashFlow.setPayamentValue(getSumOfPayamentsInDay(cashFlow.getDate()));
+            cashFlow.setRevenueValue(getSumOfRevenueInDay(cashFlow.getDate()));
+            createOrReplace(cashFlow);
+
+        }
+
+    }
 }
