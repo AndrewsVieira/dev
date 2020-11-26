@@ -1,4 +1,7 @@
-package view;
+package view.panels;
+
+import view.CashFlowTableModel;
+import view.Frame;
 
 import java.awt.BorderLayout;
 import java.awt.event.ComponentAdapter;

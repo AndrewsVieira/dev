@@ -1,6 +1,8 @@
-package view;
+package view.panels;
 
 import javax.swing.JPanel;
+
+import view.Frame;
 
 public class HomePanel extends JPanel {
     Frame frame;

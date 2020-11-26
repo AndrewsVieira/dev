@@ -34,7 +34,6 @@ public class CashFlowDB {
     private static void loadCashFlowList() {
 
         CashFlow cashFlow = new CashFlow();
-//TODO: debugar essa parte e ver o porque dando errado
         setDates();
         cashFlow.setDate(dates.get(index));
         cashFlow.setPayamentValue(getSumOfPayamentsInDay(cashFlow.getDate()));

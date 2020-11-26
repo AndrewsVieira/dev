@@ -1,4 +1,4 @@
-package view;
+package view.panels;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -9,6 +9,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import model.FinancialRecord;
+import view.Frame;
 
 import java.awt.Insets;
 import java.awt.event.ComponentAdapter;

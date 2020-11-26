@@ -4,6 +4,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.FinancialRecord;
+import view.panels.CashFlowPanel;
+import view.panels.HomePanel;
+import view.panels.PayFormPanel;
+import view.panels.PayPanel;
+import view.panels.ToReceivePanel;
 
 import java.awt.CardLayout;
 

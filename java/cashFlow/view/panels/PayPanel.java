@@ -1,4 +1,4 @@
-package view;
+package view.panels;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -10,6 +10,8 @@ import javax.swing.event.ListSelectionListener;
 
 import dataBase.PayamentDB;
 import model.FinancialRecord;
+import view.FinancialTableModel;
+import view.Frame;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

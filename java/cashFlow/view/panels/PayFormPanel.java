@@ -1,4 +1,4 @@
-package view;
+package view.panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import dataBase.PayamentDB;
 import model.utils.Provider;
+import view.Frame;
 import model.FinancialRecord;
 import model.PayamentRecord;
 

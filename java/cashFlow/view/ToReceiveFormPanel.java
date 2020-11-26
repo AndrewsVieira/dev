@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import dataBase.RevenueDB;
 import model.utils.Client;
+import view.panels.FormPanel;
 import model.FinancialRecord;
 import model.RevenueRecord;
 
