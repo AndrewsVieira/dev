@@ -104,4 +104,39 @@ public class Date {
         return String.format("%s", date);
     }
 
+    public static boolean lowestDate(String date1, String date2) {
+        boolean bool = false;
+        Date dt1 = new Date(date1);
+        Date dt2 = new Date(date2);
+
+        int y1 = dt1.getYearOfDate();
+        int y2 = dt2.getYearOfDate();
+
+        if (y1 < y2) {
+            return true;
+        } else if (y2 < y1) {
+            return false;
+        }
+
+        int m1 = dt1.getMonthOfDate();
+        int m2 = dt2.getMonthOfDate();
+
+        if (m1 < m2) {
+            return true;
+        } else if (m2 < m1) {
+            return false;
+        }
+
+        int d1 = dt1.getDayOfDate();
+        int d2 = dt2.getDayOfDate();
+
+        if (d1 < d2) {
+            return true;
+        } else if (d2 < d1) {
+            return false;
+        }
+
+        return bool;
+    } 
+
 }
