@@ -15,8 +15,6 @@ public class CashFlowDB {
     private static List<FinancialRecord> payaments = new ArrayList<>();
     private static List<String> dates = new ArrayList<>();
 
-    // private static double openingBalance = 0.00;
-
     public static void setRevenues(List<FinancialRecord> revenues) {
         CashFlowDB.revenues = revenues;
     }

@@ -12,14 +12,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import dataBase.CashFlowDB;
-import model.CashFlow;
 
 public class CashFlowPanel extends JPanel {
     Frame frame;
     MenuPanel menuPanel;
     private CashFlowTableModel tableModel;
     private JTable cashFlowTable;
-    private CashFlow cashFlow;
 
     public CashFlowPanel(Frame frame) {
         this.frame = frame;
@@ -28,10 +26,6 @@ public class CashFlowPanel extends JPanel {
         add(menuPanel, BorderLayout.NORTH);
         createCashFlowTable();
         createEventComponentAdapter();
-    }
-
-    public void setCashFlow(CashFlow cashFlow) {
-        this.cashFlow = cashFlow;
     }
 
     private void createCashFlowTable() {
