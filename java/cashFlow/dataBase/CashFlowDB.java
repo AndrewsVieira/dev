@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.CashFlow;
 import model.FinancialRecord;
+import model.utils.Date;
 
 public class CashFlowDB {
     private static int id = 0;
@@ -62,14 +63,25 @@ public class CashFlowDB {
 
     private static void setDates() {
         for (FinancialRecord rev : revenues) {
-            if (!repeatedDates(rev.getDate())) {
-                dates.add(rev.getDate());
-            }
+            orderDates(rev.getDate());
         }
         for (FinancialRecord pay : payaments) {
-            if (!repeatedDates(pay.getDate())) {
-                dates.add(pay.getDate());
+            orderDates(pay.getDate());
+        }
+    }
+
+    private static void orderDates(String date) {
+        if (dates.size() > 0 && !repeatedDates(date)) {
+            for (int i = 0; i < dates.size(); i++) {
+                if (Date.lowestDate(date, dates.get(i)) && !repeatedDates(date)) {
+                    dates.add(0, date);
+                } else if (!repeatedDates(date)) {
+                    dates.add(dates.size(), date);
+                }
+
             }
+        } else if (!repeatedDates(date)) {
+            dates.add(date);
         }
     }
 
@@ -83,7 +95,7 @@ public class CashFlowDB {
         }
         return b;
     }
-    
+
     private static void loadCashFlowList() {
         CashFlow cashFlow;
 
