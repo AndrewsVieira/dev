@@ -1,6 +1,5 @@
 package dataBase;
 
-import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,12 +83,8 @@ public class CashFlowDB {
         }
         return b;
     }
-
-    public static List<String> getDates() {
-        return dates;
-    }
-
-    public static void loadCashFlowList() {
+    
+    private static void loadCashFlowList() {
         CashFlow cashFlow;
 
         cashFlowRecords.removeAll(cashFlowRecords);
