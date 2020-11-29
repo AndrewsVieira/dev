@@ -105,6 +105,7 @@ public class PayPanel extends JPanel {
 
         payTable = new JTable(tableModel);
         payTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        payTable.setAutoCreateRowSorter(true);
 
         payTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override

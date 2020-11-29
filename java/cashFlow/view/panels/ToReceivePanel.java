@@ -104,6 +104,7 @@ public class ToReceivePanel extends JPanel {
 
         toReceiveTable = new JTable(tableModel);
         toReceiveTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        toReceiveTable.setAutoCreateRowSorter(true);
 
         toReceiveTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
