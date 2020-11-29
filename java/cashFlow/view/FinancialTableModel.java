@@ -13,9 +13,9 @@ public class FinancialTableModel extends AbstractTableModel {
     private List<FinancialRecord> records = new ArrayList<>();
     private String[] columns = new String[] { "Id", "Data", "Valor", null, "Descrição" };
 
-	public void setFourthColName(String FourthColName) {
+    public void setFourthColName(String FourthColName) {
         final int INDEX = 3;
-        
+
         if (FourthColName != null) {
             columns[INDEX] = FourthColName;
         }

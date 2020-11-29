@@ -137,6 +137,6 @@ public class Date {
         }
 
         return bool;
-    } 
+    }
 
 }

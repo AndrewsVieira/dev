@@ -3,7 +3,7 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.CashFlow;
+import model.CashFlowRecord;
 import model.FinancialRecord;
 import view.panels.CashFlowPanel;
 import view.panels.HomePanel;
@@ -40,7 +40,7 @@ public class Frame extends JFrame {
 
 		createCards();
 	}
-	
+
 	private void createCards() {
 		homePanel = new HomePanel(this);
 		cardsPanel.add(homePanel, HomePanel.class.getName());

@@ -19,8 +19,8 @@ public class RevenueRecord extends FinancialRecord {
 
     @Override
     public String toString() {
-        return String.format("##Recebimento##\nid: %d\nData: %s\nValor: %.2f\nCliente: %s\nDescrição: %s\n", 
-            getId(), getDate(), getValue(), getClientOrProvider(), getDescription());
+        return String.format("##Recebimento##\nid: %d\nData: %s\nValor: %.2f\nCliente: %s\nDescrição: %s\n", getId(),
+                getDate(), getValue(), getClientOrProvider(), getDescription());
     }
 
     @Override

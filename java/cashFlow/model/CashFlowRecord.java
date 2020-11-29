@@ -1,6 +1,6 @@
 package model;
 
-public class CashFlow {
+public class CashFlowRecord {
     private int id;
     private String date;
     private double revenueValue;
@@ -67,7 +67,7 @@ public class CashFlow {
         if (obj == null) {
             return false;
         }
-        CashFlow cashFlow = (CashFlow) obj;
+        CashFlowRecord cashFlow = (CashFlowRecord) obj;
         return this.id == cashFlow.id;
     }
 }

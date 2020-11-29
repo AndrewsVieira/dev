@@ -80,13 +80,13 @@ public abstract class FormPanel extends JPanel {
                     dateTxt.setText("");
                     valueTxt.setText("");
                     getTypeComponent().setText("");
-                    descriptionTxt.setText(""); 
+                    descriptionTxt.setText("");
                 } else {
                     idTxt.setText(Integer.toString(getRecord().getId()));
                     dateTxt.setText(getRecord().getDate());
                     valueTxt.setText(Double.toString(getRecord().getValue()));
                     getTypeComponent().setText(getRecord().getClientOrProvider().toString());
-                    descriptionTxt.setText(getRecord().getDescription()); 
+                    descriptionTxt.setText(getRecord().getDescription());
                 }
             }
         });
@@ -94,7 +94,7 @@ public abstract class FormPanel extends JPanel {
 
     public abstract void setPayament(FinancialRecord record);
 
-    public abstract FinancialRecord getRecord(); 
+    public abstract FinancialRecord getRecord();
 
     private void createEmpysPanel() {
         // adicionando panels para leste e oeste (vazios) para acrescentar uma margem
@@ -164,7 +164,6 @@ public abstract class FormPanel extends JPanel {
 
         createCancelBtn();
         btnPanel.add(cancelBtn);
-
 
         addComponent(btnPanel, 9, 1);
 

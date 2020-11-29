@@ -30,6 +30,7 @@ public class PayFormPanel extends FormPanel {
     public void setPayament(FinancialRecord record) {
         this.payament = record;
     }
+
     @Override
     public FinancialRecord getRecord() {
         return payament;

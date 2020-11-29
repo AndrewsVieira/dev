@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import dataBase.CashFlowDB;
-import model.CashFlow;
+import model.CashFlowRecord;
 import view.Frame;
 
 public class MenuPanel extends JPanel {

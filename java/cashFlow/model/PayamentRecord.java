@@ -19,8 +19,8 @@ public class PayamentRecord extends FinancialRecord {
 
     @Override
     public String toString() {
-        return String.format("##Pagamento##\nid: %d\nData: %s\nValor: %.2f\nFornecedor: %s\nDescrição: %s\n", 
-            getId(), getDate(), getValue(), getClientOrProvider(), getDescription());
+        return String.format("##Pagamento##\nid: %d\nData: %s\nValor: %.2f\nFornecedor: %s\nDescrição: %s\n", getId(),
+                getDate(), getValue(), getClientOrProvider(), getDescription());
     }
 
     @Override

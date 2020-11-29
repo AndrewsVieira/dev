@@ -92,13 +92,11 @@ public class ToReceivePanel extends JPanel {
         btnFormToReceive.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                
 
                 frame.showToReceiveFormPanel(null);
             }
         });
     }
-
 
     private void createToReceiveTable() {
         tableModel = new FinancialTableModel();
@@ -107,7 +105,7 @@ public class ToReceivePanel extends JPanel {
         toReceiveTable = new JTable(tableModel);
         toReceiveTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        toReceiveTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        toReceiveTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent event) {
                 if (!event.getValueIsAdjusting()) {

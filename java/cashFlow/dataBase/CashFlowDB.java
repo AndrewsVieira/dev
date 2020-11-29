@@ -3,13 +3,13 @@ package dataBase;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.CashFlow;
+import model.CashFlowRecord;
 import model.FinancialRecord;
 import model.utils.Date;
 
 public class CashFlowDB {
     private static int id = 0;
-    private static List<CashFlow> cashFlowRecords = new ArrayList<>();
+    private static List<CashFlowRecord> cashFlowRecords = new ArrayList<>();
 
     private static List<FinancialRecord> revenues = new ArrayList<>();
     private static List<FinancialRecord> payaments = new ArrayList<>();
@@ -23,12 +23,12 @@ public class CashFlowDB {
         CashFlowDB.payaments = payaments;
     }
 
-    public static List<CashFlow> list() {
+    public static List<CashFlowRecord> list() {
         loadCashFlowList();
         return cashFlowRecords;
     }
 
-    private static void createOrReplace(CashFlow cashFlow) {
+    private static void createOrReplace(CashFlowRecord cashFlow) {
         int i = cashFlowRecords.indexOf(cashFlow);
 
         if (i >= 0) {
@@ -97,7 +97,7 @@ public class CashFlowDB {
     }
 
     private static void loadCashFlowList() {
-        CashFlow cashFlow;
+        CashFlowRecord cashFlow;
 
         cashFlowRecords.removeAll(cashFlowRecords);
         dates.removeAll(dates);
@@ -105,7 +105,7 @@ public class CashFlowDB {
         setDates();
         for (int i = 0; i < dates.size(); i++) {
 
-            cashFlow = new CashFlow();
+            cashFlow = new CashFlowRecord();
 
             cashFlow.setDate(dates.get(i));
             cashFlow.setPayamentValue(getSumOfPayamentsInDay(cashFlow.getDate()));
