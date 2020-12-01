@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
+
 public class Task {
 
     private int id;
     private String task;
     private String description;
+    private List<Category> categories;
 
     public int getId() {
         return id;
@@ -28,6 +31,14 @@ public class Task {
     
     public String getDescription() {
         return description;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
     }
 
     @Override
