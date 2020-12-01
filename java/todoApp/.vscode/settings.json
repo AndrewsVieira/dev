@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/andrews/dev/java/todoApp/**/*.jar"
+    ]
+}
