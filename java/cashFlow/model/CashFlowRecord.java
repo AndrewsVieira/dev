@@ -26,10 +26,6 @@ public class CashFlowRecord {
         return date;
     }
 
-    public String getStringDate() {
-        return String.format("%d/%d/%d",1, 2, 3);
-    }
-
     public void setDate(Date date) {
         this.date = date;
     }
