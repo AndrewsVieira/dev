@@ -1,11 +1,12 @@
 package dataBase;
 
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import model.CashFlowRecord;
 import model.FinancialRecord;
-import model.utils.Date;
+
 
 public class CashFlowDB {
     private static int id = 0;
@@ -13,7 +14,7 @@ public class CashFlowDB {
 
     private static List<FinancialRecord> revenues = new ArrayList<>();
     private static List<FinancialRecord> payaments = new ArrayList<>();
-    private static List<String> dates = new ArrayList<>();
+    private static List<Date> dates = new ArrayList<>();
 
     public static void setRevenues(List<FinancialRecord> revenues) {
         CashFlowDB.revenues = revenues;
@@ -39,7 +40,7 @@ public class CashFlowDB {
         }
     }
 
-    private static double getSumOfRevenueInDay(String date) {
+    private static double getSumOfRevenueInDay(Date date) {
         double sum = 0;
 
         for (FinancialRecord rev : revenues) {
@@ -50,7 +51,7 @@ public class CashFlowDB {
         return sum;
     }
 
-    private static double getSumOfPayamentsInDay(String date) {
+    private static double getSumOfPayamentsInDay(Date date) {
         double sum = 0;
 
         for (FinancialRecord pay : payaments) {
@@ -70,10 +71,10 @@ public class CashFlowDB {
         }
     }
 
-    private static void orderDates(String date) {
+    private static void orderDates(Date date) {
         if (dates.size() > 0 && !repeatedDates(date)) {
             for (int i = 0; i < dates.size(); i++) {
-                if (Date.lowestDate(date, dates.get(i)) && !repeatedDates(date)) {
+                if (!repeatedDates(date) && date.before(dates.get(i))) {
                     dates.add(0, date);
                 } else if (!repeatedDates(date)) {
                     dates.add(dates.size(), date);
@@ -85,9 +86,9 @@ public class CashFlowDB {
         }
     }
 
-    private static boolean repeatedDates(String date) {
+    private static boolean repeatedDates(Date date) {
         boolean b = false;
-        for (String dt : dates) {
+        for (Date dt : dates) {
             if (dt.equals(date)) {
                 b = true;
                 return b;

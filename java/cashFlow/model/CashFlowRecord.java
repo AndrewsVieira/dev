@@ -1,8 +1,10 @@
 package model;
 
+import java.sql.Date;
+
 public class CashFlowRecord {
     private int id;
-    private String date;
+    private Date date;
     private double revenueValue;
     private double payamentValue;
     private double accumulatedBalance;
@@ -20,11 +22,15 @@ public class CashFlowRecord {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public String getStringDate() {
+        return String.format("%d/%d/%d",1, 2, 3);
+    }
+
+    public void setDate(Date date) {
         this.date = date;
     }
 

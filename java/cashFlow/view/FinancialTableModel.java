@@ -54,7 +54,7 @@ public class FinancialTableModel extends AbstractTableModel {
                     value = Integer.toString(record.getId());
                     break;
                 case 1:
-                    value = record.getDate();
+                    value = record.getDate().toString();
                     break;
                 case 2:
                     value = Double.toString(record.getValue());

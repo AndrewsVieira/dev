@@ -83,7 +83,7 @@ public abstract class FormPanel extends JPanel {
                     descriptionTxt.setText("");
                 } else {
                     idTxt.setText(Integer.toString(getRecord().getId()));
-                    dateTxt.setText(getRecord().getDate());
+                    dateTxt.setText(getRecord().getDate().toString());
                     valueTxt.setText(Double.toString(getRecord().getValue()));
                     getTypeComponent().setText(getRecord().getClientOrProvider().toString());
                     descriptionTxt.setText(getRecord().getDescription());

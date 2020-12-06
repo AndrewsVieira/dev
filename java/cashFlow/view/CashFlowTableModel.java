@@ -50,7 +50,7 @@ public class CashFlowTableModel extends AbstractTableModel {
 
             switch (colIndex) {
                 case 0:
-                    value = record.getDate();
+                    value = record.getDate().toString();
                     break;
                 case 1:
                     value = Double.toString(rev);

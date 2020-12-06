@@ -2,6 +2,7 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -84,7 +85,7 @@ public class ToReceiveFormPanel extends FormPanel {
         Client client = new Client();
         client.setName(getClientOrProvider().getText());
 
-        rev.setDate(getDateTxt().getText());
+        rev.setDate(Date.valueOf(getDateTxt().getText()));
         rev.setValue(Double.parseDouble(getValueTxt().getText()));
         rev.setClient(client);
         rev.setDescription(getDescriptionTxt().getText());

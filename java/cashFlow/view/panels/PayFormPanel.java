@@ -2,6 +2,7 @@ package view.panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -95,7 +96,7 @@ public class PayFormPanel extends FormPanel {
         Provider provider = new Provider();
         provider.setName(getClientOrProvider().getText());
 
-        pay.setDate(getDateTxt().getText());
+        pay.setDate(Date.valueOf(getDateTxt().getText()));
         pay.setValue(Double.parseDouble(getValueTxt().getText()));
         pay.setProvider(provider);
         pay.setDescription(getDescriptionTxt().getText());

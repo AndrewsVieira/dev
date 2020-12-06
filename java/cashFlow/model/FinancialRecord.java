@@ -1,8 +1,10 @@
 package model;
 
+import java.sql.Date;
+
 public abstract class FinancialRecord {
     private int id;
-    private String date;
+    private Date date;
     private String description;
     private double value;
 
@@ -18,11 +20,11 @@ public abstract class FinancialRecord {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
