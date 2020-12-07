@@ -84,7 +84,7 @@ public abstract class FormPanel extends JPanel {
                     descriptionTxt.setText("");
                 } else {
                     idTxt.setText(Integer.toString(getRecord().getId()));
-                    dateTxt.setText(getRecord().getDate().toString());
+                    dateTxt.setText(getRecord().getStringDate());
                     valueTxt.setText(Double.toString(getRecord().getValue()));
                     getTypeComponent().setText(getRecord().getClientOrProvider().toString());
                     descriptionTxt.setText(getRecord().getDescription());
@@ -207,7 +207,6 @@ public abstract class FormPanel extends JPanel {
                 strYear += strDate.charAt(i);
             }
         }
-        System.out.println("Ano: " + strYear);
         int y = Integer.parseInt(strYear);
 
         String strMonth = "";
@@ -216,7 +215,6 @@ public abstract class FormPanel extends JPanel {
                 strMonth += strDate.charAt(i);
             }
         }
-        System.out.println("Ano: " + strMonth);
         int m = Integer.parseInt(strMonth);
 
         String strDay = "";
@@ -225,7 +223,6 @@ public abstract class FormPanel extends JPanel {
                 strDay += strDate.charAt(i);
             }
         }
-        System.out.println("Ano: " + strDay);
         int d = Integer.parseInt(strDay);
 
         Date date = Date.valueOf(String.format("%d-%d-%d", y, m, d));

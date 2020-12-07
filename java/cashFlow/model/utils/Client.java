@@ -13,6 +13,6 @@ public class Client {
 
     @Override
     public String toString() {
-        return String.format("%s", name);
+        return name;
     }
 }

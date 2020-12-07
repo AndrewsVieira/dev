@@ -3,6 +3,12 @@ package model.utils;
 public class Provider {
     private String name;
 
+    public Provider(){}
+
+    public Provider(String name) {
+        setName(name);
+    }
+
     public String getName() {
         return name;
     }
@@ -13,6 +19,6 @@ public class Provider {
 
     @Override
     public String toString() {
-        return String.format("%s", name);
+        return name;
     }
 }
