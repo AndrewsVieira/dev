@@ -9,11 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import dataBase.RevenueDB;
-import model.utils.Client;
-import view.Frame;
-import view.panels.FormPanel;
 import model.FinancialRecord;
 import model.RevenueRecord;
+import model.utils.Client;
+import view.Frame;
 
 public class ToReceiveFormPanel extends FormPanel {
 
