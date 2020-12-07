@@ -7,7 +7,6 @@ import java.util.List;
 import model.CashFlowRecord;
 import model.FinancialRecord;
 
-
 public class CashFlowDB {
     private static int id = 0;
     private static List<CashFlowRecord> cashFlowRecords = new ArrayList<>();
@@ -74,7 +73,11 @@ public class CashFlowDB {
     private static void orderDates(Date date) {
         if (dates.size() > 0 && !repeatedDates(date)) {
             for (int i = 0; i < dates.size(); i++) {
-                if (!repeatedDates(date) && date.before(dates.get(i))) {
+                if (date.before(dates.get(i)) && !repeatedDates(date)) {
+                    System.out.printf(
+                            "estamos dentro do primeiro if\nvariável 'date': %s\ndata comparada no índice: %s",
+                            date.toString(), dates.get(i).toString());
+
                     dates.add(0, date);
                 } else if (!repeatedDates(date)) {
                     dates.add(dates.size(), date);
