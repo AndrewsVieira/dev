@@ -14,6 +14,7 @@ import view.Frame;
 import java.awt.Insets;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.sql.Date;
 import java.awt.GridBagLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -197,6 +198,39 @@ public abstract class FormPanel extends JPanel {
         layout.setConstraints(comp, constraints);
 
         formPanel.add(comp);
+    }
+
+    public Date transDate(String strDate) {
+        String strYear = "";
+        for (int i = 0; i < strDate.length(); i++) {
+            if (i > 5 && i < 10) {
+                strYear += strDate.charAt(i);
+            }
+        }
+        System.out.println("Ano: " + strYear);
+        int y = Integer.parseInt(strYear);
+
+        String strMonth = "";
+        for (int i = 0; i < strDate.length(); i++) {
+            if (i > 2 && i < 5) {
+                strMonth += strDate.charAt(i);
+            }
+        }
+        System.out.println("Ano: " + strMonth);
+        int m = Integer.parseInt(strMonth);
+
+        String strDay = "";
+        for (int i = 0; i < strDate.length(); i++) {
+            if (i >= 0 && i < 2) {
+                strDay += strDate.charAt(i);
+            }
+        }
+        System.out.println("Ano: " + strDay);
+        int d = Integer.parseInt(strDay);
+
+        Date date = Date.valueOf(String.format("%d-%d-%d", y, m, d));
+
+        return date;
     }
 
 }

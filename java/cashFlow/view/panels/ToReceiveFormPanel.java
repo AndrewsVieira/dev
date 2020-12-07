@@ -1,4 +1,4 @@
-package view;
+package view.panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import dataBase.RevenueDB;
 import model.utils.Client;
+import view.Frame;
 import view.panels.FormPanel;
 import model.FinancialRecord;
 import model.RevenueRecord;
@@ -85,7 +86,9 @@ public class ToReceiveFormPanel extends FormPanel {
         Client client = new Client();
         client.setName(getClientOrProvider().getText());
 
-        rev.setDate(Date.valueOf(getDateTxt().getText()));
+        Date date = transDate(getDateTxt().getText());
+
+        rev.setDate(date);
         rev.setValue(Double.parseDouble(getValueTxt().getText()));
         rev.setClient(client);
         rev.setDescription(getDescriptionTxt().getText());

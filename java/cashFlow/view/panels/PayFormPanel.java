@@ -96,9 +96,11 @@ public class PayFormPanel extends FormPanel {
         Provider provider = new Provider();
         provider.setName(getClientOrProvider().getText());
 
-        pay.setDate(Date.valueOf(getDateTxt().getText()));
+        Date date = transDate(getDateTxt().getText());
+
+        pay.setDate(date);
         pay.setValue(Double.parseDouble(getValueTxt().getText()));
         pay.setProvider(provider);
         pay.setDescription(getDescriptionTxt().getText());
-    }
+    }  
 }

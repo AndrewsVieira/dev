@@ -63,7 +63,7 @@ public class CashFlowTableModel extends AbstractTableModel {
                     break;
 
                 default:
-                    System.err.printf("[ERRO] Índice inválido para coluna - índice: %d", colIndex);
+                    System.err.printf("[ERRO] Índice inválido para coluna - índice: %d\n", colIndex);
                     break;
             }
         }
