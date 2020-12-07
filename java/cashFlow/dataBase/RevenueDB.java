@@ -1,39 +1,113 @@
 package dataBase;
 
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
+import connection.ConnectionFactory;
 import model.FinancialRecord;
 
 public class RevenueDB {
-    private static int id = 0;
-    private static List<FinancialRecord> revenues = new ArrayList<>();
-
     public static void insert(FinancialRecord revenue) {
-        revenue.setId(++id);
-        revenues.add(revenue);
-        System.out.println(revenue);
-        reload();
+
+        final String INSERT_REVENUE = "INSERT INTO revenue (id_financial, client) VALUES (?, ?)";
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet result = null;
+
+        try {
+
+            FinancialDB.insert(revenue);
+
+            connection = ConnectionFactory.getConnection();
+
+            statement = connection.prepareStatement(INSERT_REVENUE);
+            statement.setInt(1, revenue.getId());
+            statement.setString(2, revenue.getClientOrProvider().toString());
+            statement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (result != null) {
+                    result.close();
+                }
+
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void update(FinancialRecord revenue) {
-        int i = revenues.indexOf(revenue);
-        if (i >= 0) {
-            revenues.set(i, revenue);
+
+        final String UPDATE_PAYAMENT = "UPDATE revenue SET revenue = ? WHERE id_financial = ?";
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+
+            FinancialDB.update(revenue);
+
+            connection = ConnectionFactory.getConnection();
+
+            statement = connection.prepareStatement(UPDATE_PAYAMENT);
+            statement.setString(1, revenue.getClientOrProvider().toString());
+            statement.setInt(2, revenue.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        reload();
     }
 
     public static void delete(FinancialRecord revenue) {
-        revenues.remove(revenue);
-        reload();
+
+        final String DELETE_PAYAMENT = "DELETE FROM revenue WHERE id_financial = ?";
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(DELETE_PAYAMENT);
+            statement.setInt(1, revenue.getId());
+            statement.execute();
+
+            FinancialDB.delete(revenue);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static List<FinancialRecord> list() {
-        return revenues;
-    }
-
-    private static void reload() {
-        CashFlowDB.setRevenues(revenues);
+        final String REVENUE = "revenue";
+        final String CLIENT = "client";
+        return FinancialDB.list(CLIENT, REVENUE);
     }
 }

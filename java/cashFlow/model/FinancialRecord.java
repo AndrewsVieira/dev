@@ -27,8 +27,8 @@ public abstract class FinancialRecord {
 
     public String getStringDate() {
         String originalFormatDate = date.toString();
-        String newFormatDate = String.format("%s/%s/%s", getDayOfDate(originalFormatDate), getMonthOfDate(originalFormatDate),
-                getYearOfDate(originalFormatDate));
+        String newFormatDate = String.format("%s/%s/%s", getDayOfDate(originalFormatDate),
+                getMonthOfDate(originalFormatDate), getYearOfDate(originalFormatDate));
         return newFormatDate;
     }
 
