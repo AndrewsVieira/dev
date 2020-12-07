@@ -48,7 +48,7 @@ public class RevenueDB {
 
     public static void update(FinancialRecord revenue) {
 
-        final String UPDATE_PAYAMENT = "UPDATE revenue SET revenue = ? WHERE id_financial = ?";
+        final String UPDATE_PAYAMENT = "UPDATE revenue SET client = ? WHERE id_financial = ?";
 
         Connection connection = null;
         PreparedStatement statement = null;
