@@ -1,8 +1,5 @@
 package view.panels;
 
-import view.CashFlowTableModel;
-import view.Frame;
-
 import java.awt.BorderLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -12,6 +9,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import dataBase.CashFlowDB;
+import view.Frame;
+import view.tableModels.CashFlowTableModel;
 
 public class CashFlowPanel extends JPanel {
     Frame frame;

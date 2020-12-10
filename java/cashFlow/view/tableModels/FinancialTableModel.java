@@ -1,4 +1,5 @@
-package view;
+package view.tableModels;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class FinancialTableModel extends AbstractTableModel {
                     value = record.getDescription();
                     break;
                 default:
-                    System.err.printf("[ERRO] Índice de coluna inválido: %d\n", colIndex);
+                    System.err.printf("\n[ERRO] Índice de coluna inválido: %d", colIndex);
                     break;
             }
         }

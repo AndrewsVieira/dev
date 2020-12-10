@@ -141,7 +141,7 @@ public abstract class FormPanel extends JPanel {
 
         createTypeComponent();
 
-        label = new JLabel("Descrição:");
+        label = new JLabel("Descrição");
         addComponent(label, 4, 0);
         descriptionTxt = new JTextArea(5, 30);
         JScrollPane scroll = new JScrollPane(descriptionTxt);

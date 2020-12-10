@@ -1,17 +1,20 @@
 package view;
 
+import java.awt.CardLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.FinancialRecord;
+import model.utils.Category;
 import view.panels.CashFlowPanel;
+import view.panels.CategoryFormPanel;
+import view.panels.CategoryPanel;
 import view.panels.HomePanel;
 import view.panels.PayFormPanel;
 import view.panels.PayPanel;
 import view.panels.ToReceiveFormPanel;
 import view.panels.ToReceivePanel;
-
-import java.awt.CardLayout;
 
 public class Frame extends JFrame {
 	public static String TITLE = "Fluxo de Caixa";
@@ -26,6 +29,9 @@ public class Frame extends JFrame {
 
 	private PayFormPanel payFormPanel;
 	private ToReceiveFormPanel toReceiveFormPanel;
+
+	private CategoryPanel categoryPanel;
+	private CategoryFormPanel categoryFormPanel;
 
 	public Frame() {
 		super(TITLE);
@@ -59,6 +65,12 @@ public class Frame extends JFrame {
 
 		toReceiveFormPanel = new ToReceiveFormPanel(this);
 		cardsPanel.add(toReceiveFormPanel, ToReceiveFormPanel.class.getName());
+
+		categoryPanel = new CategoryPanel(this);
+		cardsPanel.add(categoryPanel, CategoryPanel.class.getName());
+
+		categoryFormPanel = new CategoryFormPanel(this);
+		cardsPanel.add(categoryFormPanel, CategoryFormPanel.class.getName());
 	}
 
 	public void draw() {
@@ -93,6 +105,15 @@ public class Frame extends JFrame {
 	public void showToReceiveFormPanel(FinancialRecord revenue) {
 		toReceiveFormPanel.setRevenue(revenue);
 		layout.show(cardsPanel, ToReceiveFormPanel.class.getName());
+	}
+
+	public void showCategoryPanel() {
+		layout.show(cardsPanel, CategoryPanel.class.getName());
+	}
+
+	public void showCategoryFormPanel(Category category) {
+		categoryFormPanel.setCategory(category);
+		layout.show(cardsPanel, CategoryFormPanel.class.getName());
 	}
 
 }

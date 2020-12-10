@@ -1,11 +1,11 @@
-package view;
-
-import model.CashFlowRecord;
+package view.tableModels;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
+
+import model.CashFlowRecord;
 
 public class CashFlowTableModel extends AbstractTableModel {
 

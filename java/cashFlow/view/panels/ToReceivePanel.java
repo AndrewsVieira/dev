@@ -1,5 +1,10 @@
 package view.panels;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -10,13 +15,8 @@ import javax.swing.event.ListSelectionListener;
 
 import dataBase.RevenueDB;
 import model.FinancialRecord;
-import view.FinancialTableModel;
 import view.Frame;
-
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import view.tableModels.FinancialTableModel;
 
 public class ToReceivePanel extends JPanel {
     private Frame frame;

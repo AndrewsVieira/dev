@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Date;
 
+import model.utils.Category;
 import model.utils.StringDate;
 
 public abstract class FinancialRecord {
@@ -9,9 +10,18 @@ public abstract class FinancialRecord {
     private Date date;
     private String description;
     private double value;
+    private Category category;
 
     public double getValue() {
         return value;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getId() {
