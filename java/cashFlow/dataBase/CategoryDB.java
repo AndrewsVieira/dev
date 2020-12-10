@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import connection.ConnectionFactory;
 import model.utils.Category;
+import model.utils.TypeCategory;
 
 public class CategoryDB {
     public static boolean insert(Category category) {
@@ -39,7 +42,7 @@ public class CategoryDB {
                 if (statement != null) {
                     statement.close();
                 }
-                
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 return false;
@@ -48,7 +51,7 @@ public class CategoryDB {
         return true;
     }
 
-	public static boolean delete(Category category) {
+    public static boolean delete(Category category) {
         final String DELETE = "DELETE FROM category WHERE id = ?";
 
         Connection connection = null;
@@ -59,7 +62,7 @@ public class CategoryDB {
             statement = connection.prepareStatement(DELETE);
             statement.setInt(1, category.getId());
             statement.execute();
-           
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -68,7 +71,7 @@ public class CategoryDB {
                 if (statement != null) {
                     statement.close();
                 }
-                
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 return false;
@@ -76,5 +79,113 @@ public class CategoryDB {
         }
         return true;
 
-	}
+    }
+
+    public static List<Category> list() {
+        List<Category> categories = new ArrayList<>();
+
+        final String SELECT = "SELECT * FROM category ORDER BY id";
+
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet result = null;
+
+        try {
+
+            connection = ConnectionFactory.getConnection();
+            statement = connection.createStatement();
+            result = statement.executeQuery(SELECT);
+            while (result.next()) {
+                Category category = new Category();
+                category.setId(result.getInt("id"));
+                category.setName(result.getString("name"));
+                category.setType(result.getString("type"));
+                categories.add(category);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return categories;
+    }
+
+    public static List<Category> list(TypeCategory type) {
+        List<Category> categories = new ArrayList<>();
+
+        final String SELECT = "SELECT * FROM category WHERE type = '" + type.getType() + "' ORDER BY id";
+
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet result = null;
+
+        try {
+
+            connection = ConnectionFactory.getConnection();
+            statement = connection.createStatement();
+            result = statement.executeQuery(SELECT);
+            while (result.next()) {
+                Category category = new Category();
+                category.setId(result.getInt("id"));
+                category.setName(result.getString("name"));
+                category.setType(result.getString("type"));
+
+                categories.add(category);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return categories;
+    }
+
+    public static boolean update(Category category) {
+        final String UPDATE = "UPDATE category SET name = ?, type = ? WHERE id = ? ";
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(UPDATE);
+            statement.setString(1, category.getName());
+            statement.setString(2, category.getType().getType());
+            statement.setInt(3, category.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static Object listPayamentCategory() {
+        return null;
+    }
 }

@@ -127,4 +127,8 @@ public class CategoryPanel extends JPanel {
         btnChangeCategory.setEnabled(true);
         btnRemoveCategory.setEnabled(true);
     }
+
+	public void reload() {
+        tableModel.load(CategoryDB.list());
+	}
 }

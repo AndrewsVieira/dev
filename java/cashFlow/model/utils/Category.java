@@ -20,6 +20,18 @@ public class Category {
     public void setType(TypeCategory type) {
         this.type = type;
     }
+    public void setType(String type) {
+        final String PAGAMENTO = "Pagamento";
+        final String RECEBIMENTO = "Recebimento";
+
+        if (type.equals(PAGAMENTO)) {
+            setType(TypeCategory.PAYAMENT);
+        } else if (type.equals(RECEBIMENTO)) {
+            setType(TypeCategory.REVENUE);
+        } else {
+            System.err.printf("\n[ERRO] tipo inexistente para categoria - tipo: %s", type);
+        }
+    }
 
     public String getName() {
         return name;
@@ -28,6 +40,7 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
+
 
     
 }

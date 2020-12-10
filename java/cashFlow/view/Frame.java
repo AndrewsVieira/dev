@@ -98,7 +98,7 @@ public class Frame extends JFrame {
 	}
 
 	public void showPayFormPanel(FinancialRecord record) {
-		payFormPanel.setPayament(record);
+		payFormPanel.setRecord(record);
 		layout.show(cardsPanel, PayFormPanel.class.getName());
 	}
 
@@ -108,6 +108,7 @@ public class Frame extends JFrame {
 	}
 
 	public void showCategoryPanel() {
+		categoryPanel.reload();
 		layout.show(cardsPanel, CategoryPanel.class.getName());
 	}
 

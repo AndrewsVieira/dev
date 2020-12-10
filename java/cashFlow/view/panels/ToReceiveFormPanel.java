@@ -3,15 +3,21 @@ package view.panels;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.List;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import dataBase.CategoryDB;
 import dataBase.RevenueDB;
 import model.FinancialRecord;
 import model.RevenueRecord;
+import model.utils.Category;
 import model.utils.Client;
+import model.utils.TypeCategory;
 import view.Frame;
 
 public class ToReceiveFormPanel extends FormPanel {
@@ -20,10 +26,11 @@ public class ToReceiveFormPanel extends FormPanel {
     private JButton cancelBtn;
     private JButton saveBtn;
     private FinancialRecord revenue;
+    private JComboBox categoryBox;
 
     public ToReceiveFormPanel(Frame frame) {
         super(frame);
-        setPayament(null);
+        setRecord(null);
     }
 
     public void setRevenue(FinancialRecord revenue) {
@@ -99,12 +106,25 @@ public class ToReceiveFormPanel extends FormPanel {
     }
 
     @Override
-    public void setPayament(FinancialRecord record) {
+    public void setRecord(FinancialRecord record) {
         this.revenue = record;
     }
 
     @Override
     public FinancialRecord getRecord() {
         return revenue;
+    }
+
+    @Override
+    public void choiseCategory() {
+        // String[] categories = new
+        // String[CategoryDB.list(TypeCategory.REVENUE).size()];
+        // for (String str : CategoryDB.list(TypeCategory.REVENUE)) {
+        // categories[CategoryDB.list(TypeCategory.REVENUE).indexOf(str)] = str;
+        // }
+
+        List<Category> categories = CategoryDB.list(TypeCategory.REVENUE);
+        categoryBox = new JComboBox((ComboBoxModel) categories);
+        addComponent(categoryBox, 4, 1);
     }
 }

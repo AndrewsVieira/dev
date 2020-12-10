@@ -66,4 +66,9 @@ public class CategoryTableModel extends AbstractTableModel {
         categories.remove(category);
         fireTableDataChanged();
 	}
+
+	public void load(List<Category> list) {
+        categories = list;
+        fireTableDataChanged();
+	}
 }

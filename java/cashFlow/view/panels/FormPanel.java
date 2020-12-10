@@ -93,7 +93,7 @@ public abstract class FormPanel extends JPanel {
         });
     }
 
-    public abstract void setPayament(FinancialRecord record);
+    public abstract void setRecord(FinancialRecord record);
 
     public abstract FinancialRecord getRecord();
 
@@ -141,11 +141,15 @@ public abstract class FormPanel extends JPanel {
 
         createTypeComponent();
 
-        label = new JLabel("Descrição");
+        label = new JLabel("Categoria");
         addComponent(label, 4, 0);
+        choiseCategory();
+
+        label = new JLabel("Descrição");
+        addComponent(label, 5, 0);
         descriptionTxt = new JTextArea(5, 30);
         JScrollPane scroll = new JScrollPane(descriptionTxt);
-        addComponent(scroll, 4, 1, 1, 5);
+        addComponent(scroll, 5, 1, 1, 5);
 
         createBtns();
 
@@ -166,7 +170,7 @@ public abstract class FormPanel extends JPanel {
         createCancelBtn();
         btnPanel.add(cancelBtn);
 
-        addComponent(btnPanel, 9, 1);
+        addComponent(btnPanel, 10, 1);
 
     }
 
@@ -181,6 +185,8 @@ public abstract class FormPanel extends JPanel {
     public abstract void createCancelBtn();
 
     public abstract void createSaveBtn();
+
+    public abstract void choiseCategory();
 
     public void addComponent(JComponent comp, int row, int col) {
         addComponent(comp, row, col, 1, 1);

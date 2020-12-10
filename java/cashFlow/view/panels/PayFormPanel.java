@@ -3,16 +3,22 @@ package view.panels;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.List;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import dataBase.CategoryDB;
 import dataBase.PayamentDB;
-import model.utils.Provider;
-import view.Frame;
 import model.FinancialRecord;
 import model.PayamentRecord;
+import model.utils.Category;
+import model.utils.Provider;
+import model.utils.TypeCategory;
+import view.Frame;
 
 public class PayFormPanel extends FormPanel {
 
@@ -20,15 +26,16 @@ public class PayFormPanel extends FormPanel {
     private JButton cancelBtn;
     private JButton saveBtn;
     private FinancialRecord payament;
+    private JComboBox categoryBox;
 
     public PayFormPanel(Frame frame) {
         super(frame);
 
-        setPayament(null);
+        setRecord(null);
     }
 
     @Override
-    public void setPayament(FinancialRecord record) {
+    public void setRecord(FinancialRecord record) {
         this.payament = record;
     }
 
@@ -96,11 +103,27 @@ public class PayFormPanel extends FormPanel {
         Provider provider = new Provider();
         provider.setName(getClientOrProvider().getText());
 
+        Category category = CategoryDB.list().get(((Category) categoryBox.getSelectedItem()).getId());
+
         Date date = transDate(getDateTxt().getText());
 
         pay.setDate(date);
         pay.setValue(Double.parseDouble(getValueTxt().getText()));
         pay.setProvider(provider);
+        pay.setCategory(category);
         pay.setDescription(getDescriptionTxt().getText());
-    }  
+    }
+
+    @Override
+    public void choiseCategory() {
+        // String[] categories = new
+        // String[CategoryDB.list(TypeCategory.PAYAMENT).size()];
+        // for (String str : CategoryDB.list(TypeCategory.PAYAMENT)) {
+        // categories[CategoryDB.list(TypeCategory.PAYAMENT).indexOf(str)] = str;
+        // }
+
+        List<Category> categories = CategoryDB.list(TypeCategory.PAYAMENT);
+        categoryBox = new JComboBox((ComboBoxModel) categories);
+        addComponent(categoryBox, 4, 1);
+    }
 }

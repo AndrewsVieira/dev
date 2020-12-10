@@ -6,17 +6,25 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import dataBase.CategoryDB;
 import model.utils.Category;
+import model.utils.TypeCategory;
 import view.Frame;
 
 public class CategoryFormPanel extends JPanel {
+    private static final String[] LIST_ITEMS = new String[] { TypeCategory.REVENUE.getType(),
+            TypeCategory.PAYAMENT.getType() };
+
     private static Insets FIELD_INSETS = new Insets(5, 10, 0, 0);
 
     private Category category;
@@ -27,7 +35,7 @@ public class CategoryFormPanel extends JPanel {
 
     private JTextField idTxt;
     private JTextField nameTxt;
-    private JTextField typeTxt;
+    private JComboBox typeBox;
 
     private JButton save;
     private JButton cancel;
@@ -45,6 +53,23 @@ public class CategoryFormPanel extends JPanel {
         formPanel.setLayout(layout);
 
         createForm();
+        createEventComponentAdapter();
+    }
+
+    private void createEventComponentAdapter() {
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent arg0) {
+                if (category == null) {
+                    idTxt.setText("");
+                    nameTxt.setText("");
+                } else {
+                    idTxt.setText(Integer.toString(category.getId()));
+                    nameTxt.setText(category.getName());
+                    typeBox.setSelectedItem(category.getType().getType());
+                }
+            }
+        });
     }
 
     private void createForm() {
@@ -53,6 +78,7 @@ public class CategoryFormPanel extends JPanel {
         label = new JLabel("Id");
         addComponent(label, 0, 0);
         idTxt = new JTextField();
+        idTxt.setEditable(false);
         addComponent(idTxt, 0, 1);
 
         label = new JLabel("Nome");
@@ -62,8 +88,8 @@ public class CategoryFormPanel extends JPanel {
 
         label = new JLabel("Tipo");
         addComponent(label, 2, 0);
-        typeTxt = new JTextField();
-        addComponent(typeTxt, 2, 1);
+        typeBox = new JComboBox<>(LIST_ITEMS);
+        addComponent(typeBox, 2, 1);
 
         createBtns();
 
@@ -78,7 +104,18 @@ public class CategoryFormPanel extends JPanel {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                frame.showCategoryPanel();    
+                Category category = new Category();
+                category.setName(nameTxt.getText());
+                category.setType(typeBox.getSelectedItem().toString());
+
+                if (CategoryFormPanel.this.category == null) {
+                    CategoryDB.insert(category);
+                } else {
+                    category.setId(Integer.parseInt(idTxt.getText()));
+                    CategoryDB.update(category);
+                }                
+
+                frame.showCategoryPanel();
             }
         });
 
@@ -87,7 +124,7 @@ public class CategoryFormPanel extends JPanel {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                frame.showCategoryPanel(); 
+                frame.showCategoryPanel();
             }
         });
 
