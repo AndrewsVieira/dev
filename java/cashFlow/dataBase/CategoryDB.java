@@ -185,7 +185,40 @@ public class CategoryDB {
         return true;
     }
 
-    public static Object listPayamentCategory() {
-        return null;
-    }
+	public static Category getCategoryById(int id) {
+		Category category = new Category();
+
+        final String SELECT = "SELECT c.name, c.type FROM category c INNER JOIN financial f ON c.id = f.category WHERE c.id = ?";
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet result = null;
+
+        try {
+
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(SELECT);
+            result = statement.executeQuery();
+
+            while (result.next()) {
+                category.setId(id);
+                category.setName(result.getString("name"));
+                category.setType(result.getString("type"));
+            }
+            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return category;
+	}
 }

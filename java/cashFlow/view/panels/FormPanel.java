@@ -1,6 +1,7 @@
 package view.panels;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -81,17 +82,21 @@ public abstract class FormPanel extends JPanel {
                     dateTxt.setText("");
                     valueTxt.setText("");
                     getTypeComponent().setText("");
+                    getComboBoxComponent().setSelectedIndex(0);
                     descriptionTxt.setText("");
                 } else {
                     idTxt.setText(Integer.toString(getRecord().getId()));
                     dateTxt.setText(getRecord().getStringDate());
                     valueTxt.setText(Double.toString(getRecord().getValue()));
                     getTypeComponent().setText(getRecord().getClientOrProvider().toString());
+                    getComboBoxComponent().setSelectedIndex(getRecord().getCategory().getId());
                     descriptionTxt.setText(getRecord().getDescription());
                 }
             }
         });
     }
+
+    public abstract JComboBox getComboBoxComponent();
 
     public abstract void setRecord(FinancialRecord record);
 
@@ -143,7 +148,7 @@ public abstract class FormPanel extends JPanel {
 
         label = new JLabel("Categoria");
         addComponent(label, 4, 0);
-        choiseCategory();
+        chooseCategory();
 
         label = new JLabel("Descrição");
         addComponent(label, 5, 0);
@@ -186,7 +191,7 @@ public abstract class FormPanel extends JPanel {
 
     public abstract void createSaveBtn();
 
-    public abstract void choiseCategory();
+    public abstract void chooseCategory();
 
     public void addComponent(JComponent comp, int row, int col) {
         addComponent(comp, row, col, 1, 1);

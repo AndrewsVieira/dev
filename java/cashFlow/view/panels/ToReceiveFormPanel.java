@@ -3,9 +3,7 @@ package view.panels;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.util.List;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -19,6 +17,7 @@ import model.utils.Category;
 import model.utils.Client;
 import model.utils.TypeCategory;
 import view.Frame;
+import view.tableModels.ComboBoxCategoryModel;
 
 public class ToReceiveFormPanel extends FormPanel {
 
@@ -27,6 +26,7 @@ public class ToReceiveFormPanel extends FormPanel {
     private JButton saveBtn;
     private FinancialRecord revenue;
     private JComboBox categoryBox;
+    private ComboBoxCategoryModel comboModel;
 
     public ToReceiveFormPanel(Frame frame) {
         super(frame);
@@ -92,11 +92,14 @@ public class ToReceiveFormPanel extends FormPanel {
         Client client = new Client();
         client.setName(getClientOrProvider().getText());
 
+        Category category = CategoryDB.list().get(((Category) categoryBox.getSelectedItem()).getId());
+
         Date date = transDate(getDateTxt().getText());
 
         rev.setDate(date);
         rev.setValue(Double.parseDouble(getValueTxt().getText()));
         rev.setClient(client);
+        rev.setCategory(category);
         rev.setDescription(getDescriptionTxt().getText());
     }
 
@@ -116,15 +119,19 @@ public class ToReceiveFormPanel extends FormPanel {
     }
 
     @Override
-    public void choiseCategory() {
-        // String[] categories = new
-        // String[CategoryDB.list(TypeCategory.REVENUE).size()];
-        // for (String str : CategoryDB.list(TypeCategory.REVENUE)) {
-        // categories[CategoryDB.list(TypeCategory.REVENUE).indexOf(str)] = str;
-        // }
-
-        List<Category> categories = CategoryDB.list(TypeCategory.REVENUE);
-        categoryBox = new JComboBox((ComboBoxModel) categories);
+    public void chooseCategory() {
+        comboModel = new ComboBoxCategoryModel(CategoryDB.list(TypeCategory.REVENUE));
+        categoryBox = new JComboBox(comboModel);
         addComponent(categoryBox, 4, 1);
+    }
+
+    @Override
+    public JComboBox getComboBoxComponent() {
+        reload();
+        return categoryBox;
+    }
+
+    private void reload() {
+        comboModel.setCategories(CategoryDB.list(TypeCategory.REVENUE));
     }
 }

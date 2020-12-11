@@ -18,7 +18,7 @@ import model.utils.Provider;
 public class FinancialDB {
     public static void insert(FinancialRecord record) {
 
-        final String INSERT_FINANCIAL = "INSERT INTO financial (date, description, value) VALUES (?, ?, ?)";
+        final String INSERT_FINANCIAL = "INSERT INTO financial (date, description, value, category) VALUES (?, ?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -30,6 +30,7 @@ public class FinancialDB {
             statement.setDate(1, record.getDate());
             statement.setString(2, record.getDescription());
             statement.setDouble(3, record.getValue());
+            statement.setInt(4, record.getCategory().getId());
             statement.execute();
 
             result = statement.getGeneratedKeys();
@@ -139,6 +140,7 @@ public class FinancialDB {
                     record.setDate(result.getDate("date"));
                     record.setValue(result.getDouble("value"));
                     record.setClient(new Client(result.getString(ProviderOrClient)));
+                    record.setCategory(CategoryDB.getCategoryById(record.getId()));
                     record.setDescription(result.getString("description"));
                     records.add(record);
                 }
