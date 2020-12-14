@@ -132,6 +132,7 @@ public class FinancialDB {
                     record.setDate(result.getDate("date"));
                     record.setValue(result.getDouble("value"));
                     record.setProvider(new Provider(result.getString(ProviderOrClient)));
+                    record.setCategory(CategoryDB.getCategoryById(record.getId()));
                     record.setDescription(result.getString("description"));
                     records.add(record);
                 } else {
@@ -151,6 +152,9 @@ public class FinancialDB {
             e.printStackTrace();
         } finally {
             try {
+                if (result != null) {
+                    result.close();
+                }
                 if (statement != null) {
                     statement.close();
                 }

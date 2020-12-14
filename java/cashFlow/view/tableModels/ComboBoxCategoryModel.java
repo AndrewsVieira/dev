@@ -15,6 +15,17 @@ public class ComboBoxCategoryModel extends DefaultComboBoxModel {
     }
 
     @Override
+    public void setSelectedItem(Object anObject) {
+        Category category = (Category) anObject;
+        int i = categories.indexOf(category);
+        if (i >= 0 && i < categories.size()) {
+            super.setSelectedItem(categories.get(i));
+        } else {
+            System.err.printf("[ERRO] Índice inválido para lista - índice: %d", i);
+        }
+    }
+
+    @Override
     public Object getElementAt(int index) {
         Object value = null;
 
@@ -53,8 +64,8 @@ public class ComboBoxCategoryModel extends DefaultComboBoxModel {
         return categories;
     }
 
-	public void setCategories(List<Category> list) {
+    public void setCategories(List<Category> list) {
         this.categories = list;
-	}
+    }
 
 }

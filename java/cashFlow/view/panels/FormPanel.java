@@ -89,7 +89,7 @@ public abstract class FormPanel extends JPanel {
                     dateTxt.setText(getRecord().getStringDate());
                     valueTxt.setText(Double.toString(getRecord().getValue()));
                     getTypeComponent().setText(getRecord().getClientOrProvider().toString());
-                    getComboBoxComponent().setSelectedIndex(getRecord().getCategory().getId());
+                    getComboBoxComponent().setSelectedItem(getRecord().getCategory());
                     descriptionTxt.setText(getRecord().getDescription());
                 }
             }

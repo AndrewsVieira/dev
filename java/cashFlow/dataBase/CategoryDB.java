@@ -188,7 +188,7 @@ public class CategoryDB {
 	public static Category getCategoryById(int id) {
 		Category category = new Category();
 
-        final String SELECT = "SELECT c.name, c.type FROM category c INNER JOIN financial f ON c.id = f.category WHERE c.id = ?";
+        final String SELECT = "SELECT c.id, c.name, c.type FROM category c INNER JOIN financial f ON c.id = f.category WHERE f.id = ?";
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -198,10 +198,11 @@ public class CategoryDB {
 
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(SELECT);
+            statement.setInt(1, id);
             result = statement.executeQuery();
 
             while (result.next()) {
-                category.setId(id);
+                category.setId(result.getInt("id"));
                 category.setName(result.getString("name"));
                 category.setType(result.getString("type"));
             }

@@ -92,7 +92,7 @@ public class ToReceiveFormPanel extends FormPanel {
         Client client = new Client();
         client.setName(getClientOrProvider().getText());
 
-        Category category = CategoryDB.list().get(((Category) categoryBox.getSelectedItem()).getId());
+        Category category = (Category) categoryBox.getSelectedItem();
 
         Date date = transDate(getDateTxt().getText());
 
