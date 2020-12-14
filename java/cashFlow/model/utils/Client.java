@@ -3,7 +3,14 @@ package model.utils;
 public class Client {
     private String name;
 
-    public String getName() {
+    public Client() {
+	}
+
+    public Client(String name) {
+        setName(name);
+	}
+
+	public String getName() {
         return name;
     }
 
@@ -13,6 +20,6 @@ public class Client {
 
     @Override
     public String toString() {
-        return String.format("%s", name);
+        return name;
     }
 }

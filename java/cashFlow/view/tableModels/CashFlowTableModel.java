@@ -1,11 +1,11 @@
-package view;
-
-import model.CashFlowRecord;
+package view.tableModels;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
+
+import model.CashFlowRecord;
 
 public class CashFlowTableModel extends AbstractTableModel {
 
@@ -45,21 +45,18 @@ public class CashFlowTableModel extends AbstractTableModel {
                 prevBalance = Double.parseDouble((String) getValueAt(rowIndex - 1, 3));
             }
 
-            double rev = record.getRevenueValue();
-            double pay = record.getPayamentValue();
-
             switch (colIndex) {
                 case 0:
-                    value = record.getDate().toString();
+                    value = record.getStringDate();
                     break;
                 case 1:
-                    value = Double.toString(rev);
+                    value = Double.toString(record.getRevenueValue());
                     break;
                 case 2:
-                    value = Double.toString(pay);
+                    value = Double.toString(record.getPayamentValue());
                     break;
                 case 3:
-                    value = Double.toString(prevBalance + rev - pay);
+                    value = Double.toString(prevBalance + record.getRevenueValue() - record.getPayamentValue());
                     break;
 
                 default:

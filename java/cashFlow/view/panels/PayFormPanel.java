@@ -5,14 +5,19 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import dataBase.CategoryDB;
 import dataBase.PayamentDB;
-import model.utils.Provider;
-import view.Frame;
 import model.FinancialRecord;
 import model.PayamentRecord;
+import model.utils.Category;
+import model.utils.Provider;
+import model.utils.TypeCategory;
+import view.Frame;
+import view.tableModels.ComboBoxCategoryModel;
 
 public class PayFormPanel extends FormPanel {
 
@@ -20,15 +25,17 @@ public class PayFormPanel extends FormPanel {
     private JButton cancelBtn;
     private JButton saveBtn;
     private FinancialRecord payament;
+    private JComboBox categoryBox;
+    private ComboBoxCategoryModel comboModel;
 
     public PayFormPanel(Frame frame) {
         super(frame);
 
-        setPayament(null);
+        setRecord(null);
     }
 
     @Override
-    public void setPayament(FinancialRecord record) {
+    public void setRecord(FinancialRecord record) {
         this.payament = record;
     }
 
@@ -96,11 +103,31 @@ public class PayFormPanel extends FormPanel {
         Provider provider = new Provider();
         provider.setName(getClientOrProvider().getText());
 
+        Category category = (Category) categoryBox.getSelectedItem();
+
         Date date = transDate(getDateTxt().getText());
 
         pay.setDate(date);
         pay.setValue(Double.parseDouble(getValueTxt().getText()));
         pay.setProvider(provider);
+        pay.setCategory(category);
         pay.setDescription(getDescriptionTxt().getText());
-    }  
+    }
+
+    @Override
+    public void chooseCategory() {
+        comboModel = new ComboBoxCategoryModel(CategoryDB.list(TypeCategory.PAYAMENT));
+        categoryBox = new JComboBox(comboModel);
+        addComponent(categoryBox, 4, 1);
+    }
+
+    @Override
+    public JComboBox getComboBoxComponent() {
+        reload();
+        return categoryBox;
+    }
+
+    private void reload() {
+        comboModel.setCategories(CategoryDB.list(TypeCategory.PAYAMENT));
+    }
 }

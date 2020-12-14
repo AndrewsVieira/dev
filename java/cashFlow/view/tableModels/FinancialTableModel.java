@@ -1,4 +1,4 @@
-package view;
+package view.tableModels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import model.FinancialRecord;
 public class FinancialTableModel extends AbstractTableModel {
 
     private List<FinancialRecord> records = new ArrayList<>();
-    private String[] columns = new String[] { "Id", "Data", "Valor", null, "Descrição" };
+    private String[] columns = new String[] { "Id", "Data", "Valor", null, "Categoria", "Descrição" };
 
     public void setFourthColName(String FourthColName) {
         final int INDEX = 3;
@@ -54,7 +54,7 @@ public class FinancialTableModel extends AbstractTableModel {
                     value = Integer.toString(record.getId());
                     break;
                 case 1:
-                    value = record.getDate().toString();
+                    value = record.getStringDate();
                     break;
                 case 2:
                     value = Double.toString(record.getValue());
@@ -63,10 +63,13 @@ public class FinancialTableModel extends AbstractTableModel {
                     value = record.getClientOrProvider().toString();
                     break;
                 case 4:
+                    value = record.getCategory().getName();
+                    break;
+                case 5:
                     value = record.getDescription();
                     break;
                 default:
-                    System.err.printf("[ERRO] Índice de coluna inválido: %d\n", colIndex);
+                    System.err.printf("\n[ERRO] Índice de coluna inválido: %d", colIndex);
                     break;
             }
         }

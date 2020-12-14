@@ -15,6 +15,7 @@ public class MenuPanel extends JPanel {
     private JButton btnPay;
     private JButton btnToReceive;
     private JButton btnExtract;
+    private JButton btnCategory;
 
     public MenuPanel(Frame frame) {
         this.frame = frame;
@@ -23,6 +24,18 @@ public class MenuPanel extends JPanel {
         createBtnPay();
         createBtnToReceive();
         createBtnExtract();
+        createBtnCategory();
+    }
+
+    private void createBtnCategory() {
+        btnCategory = new JButton("Categorias");
+        add(btnCategory);
+        btnCategory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                frame.showCategoryPanel();
+            }
+        });
     }
 
     private void createBtnMain() {

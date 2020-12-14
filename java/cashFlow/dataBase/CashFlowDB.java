@@ -1,48 +1,38 @@
 package dataBase;
 
-import java.util.ArrayList;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import connection.ConnectionFactory;
 import model.CashFlowRecord;
 import model.FinancialRecord;
 
 public class CashFlowDB {
-    private static int id = 0;
-    private static List<CashFlowRecord> cashFlowRecords = new ArrayList<>();
-
-    private static List<FinancialRecord> revenues = new ArrayList<>();
-    private static List<FinancialRecord> payaments = new ArrayList<>();
-    private static List<Date> dates = new ArrayList<>();
-
-    public static void setRevenues(List<FinancialRecord> revenues) {
-        CashFlowDB.revenues = revenues;
-    }
-
-    public static void setPayaments(List<FinancialRecord> payaments) {
-        CashFlowDB.payaments = payaments;
-    }
-
     public static List<CashFlowRecord> list() {
-        loadCashFlowList();
-        return cashFlowRecords;
-    }
+        List<CashFlowRecord> records = new ArrayList<>();
 
-    private static void createOrReplace(CashFlowRecord cashFlow) {
-        int i = cashFlowRecords.indexOf(cashFlow);
+        List<Date> dates = getDates();
 
-        if (i >= 0) {
-            cashFlowRecords.set(i, cashFlow);
-        } else {
-            cashFlow.setId(++id);
-            cashFlowRecords.add(cashFlow);
+        for (Date date : dates) {
+            CashFlowRecord cashFlowRecord = new CashFlowRecord();
+            cashFlowRecord.setDate(date);
+            cashFlowRecord.setPayamentValue(sumPayamentOfDate(date));
+            cashFlowRecord.setRevenueValue(sumRevenueOfDate(date));
+            records.add(cashFlowRecord);
         }
+
+        return records;
     }
 
-    private static double getSumOfRevenueInDay(Date date) {
+    private static double sumRevenueOfDate(Date date) {
         double sum = 0;
 
-        for (FinancialRecord rev : revenues) {
+        for (FinancialRecord rev : RevenueDB.list()) {
             if (rev.getDate().equals(date))
                 sum += rev.getValue();
         }
@@ -50,10 +40,10 @@ public class CashFlowDB {
         return sum;
     }
 
-    private static double getSumOfPayamentsInDay(Date date) {
+    private static double sumPayamentOfDate(Date date) {
         double sum = 0;
 
-        for (FinancialRecord pay : payaments) {
+        for (FinancialRecord pay : PayamentDB.list()) {
             if (pay.getDate().equals(date))
                 sum += pay.getValue();
         }
@@ -61,62 +51,52 @@ public class CashFlowDB {
         return sum;
     }
 
-    private static void setDates() {
-        for (FinancialRecord rev : revenues) {
-            orderDates(rev.getDate());
-        }
-        for (FinancialRecord pay : payaments) {
-            orderDates(pay.getDate());
-        }
-    }
+    private static List<Date> getDates() {
+        List<Date> dates = new ArrayList<>();
+        final String SELECT_DATES = "SELECT date FROM financial ORDER BY date";
 
-    private static void orderDates(Date date) {
-        if (dates.size() > 0 && !repeatedDates(date)) {
-            for (int i = 0; i < dates.size(); i++) {
-                if (date.before(dates.get(i)) && !repeatedDates(date)) {
-                    System.out.printf(
-                            "estamos dentro do primeiro if\nvariável 'date': %s\ndata comparada no índice: %s",
-                            date.toString(), dates.get(i).toString());
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet result = null;
 
-                    dates.add(0, date);
-                } else if (!repeatedDates(date)) {
-                    dates.add(dates.size(), date);
+        try {
+
+            connection = ConnectionFactory.getConnection();
+            statement = connection.createStatement();
+            result = statement.executeQuery(SELECT_DATES);
+
+            while (result.next()) {
+                Date date = result.getDate("date");
+                if (!repeatedDates(date, dates)) {
+                    dates.add(date);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (result != null) {
+                    result.close();
                 }
 
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } else if (!repeatedDates(date)) {
-            dates.add(date);
         }
+
+        return dates;
     }
 
-    private static boolean repeatedDates(Date date) {
-        boolean b = false;
+    private static boolean repeatedDates(Date date, List<Date> dates) {
         for (Date dt : dates) {
             if (dt.equals(date)) {
-                b = true;
-                return b;
+                return true;
             }
         }
-        return b;
-    }
-
-    private static void loadCashFlowList() {
-        CashFlowRecord cashFlow;
-
-        cashFlowRecords.removeAll(cashFlowRecords);
-        dates.removeAll(dates);
-
-        setDates();
-        for (int i = 0; i < dates.size(); i++) {
-
-            cashFlow = new CashFlowRecord();
-
-            cashFlow.setDate(dates.get(i));
-            cashFlow.setPayamentValue(getSumOfPayamentsInDay(cashFlow.getDate()));
-            cashFlow.setRevenueValue(getSumOfRevenueInDay(cashFlow.getDate()));
-            createOrReplace(cashFlow);
-
-        }
-
+        return false;
     }
 }
