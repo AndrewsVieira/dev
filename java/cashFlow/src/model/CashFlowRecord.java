@@ -8,6 +8,7 @@ public class CashFlowRecord {
     private Date date;
     private double revenueValue;
     private double payamentValue;
+    private double accumulatedBalance;
 
     public double getRevenueValue() {
         return revenueValue;
@@ -38,5 +39,13 @@ public class CashFlowRecord {
 
     public void setRevenueValue(double revenueValue) {
         this.revenueValue = revenueValue;
+    }
+
+    public void setAccumulatedBalance(double accumulatedBalance) {
+        this.accumulatedBalance = accumulatedBalance;
+    }
+
+    public double getAccumulatedBalance() {
+        return accumulatedBalance;
     }
 }

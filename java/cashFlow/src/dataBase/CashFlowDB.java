@@ -13,17 +13,29 @@ import src.model.CashFlowRecord;
 import src.model.FinancialRecord;
 
 public class CashFlowDB {
+
     public static List<CashFlowRecord> list() {
         List<CashFlowRecord> records = new ArrayList<>();
-
+        
         List<Date> dates = getDates();
+        
+        double balance = 0;
 
         for (Date date : dates) {
             CashFlowRecord cashFlowRecord = new CashFlowRecord();
             cashFlowRecord.setDate(date);
             cashFlowRecord.setPayamentValue(sumPayamentOfDate(date));
             cashFlowRecord.setRevenueValue(sumRevenueOfDate(date));
+            cashFlowRecord.setAccumulatedBalance(
+                    balance + cashFlowRecord.getRevenueValue() - cashFlowRecord.getPayamentValue());
             records.add(cashFlowRecord);
+
+            int i = records.indexOf(cashFlowRecord);
+            if (i >= 0) {
+                balance = records.get(i).getAccumulatedBalance();
+            } else {
+                System.err.println("[ERRO] índice inválido para records");
+            }
         }
 
         return records;

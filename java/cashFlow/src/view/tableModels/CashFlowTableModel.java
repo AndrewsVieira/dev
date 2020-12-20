@@ -40,11 +40,6 @@ public class CashFlowTableModel extends AbstractTableModel {
         if (rowIndex >= 0 && rowIndex <= records.size()) {
             CashFlowRecord record = records.get(rowIndex);
 
-            double prevBalance = 0.0;
-            if (getValueAt(rowIndex - 1, colIndex - 1) != null) {
-                prevBalance = Double.parseDouble((String) getValueAt(rowIndex - 1, 3));
-            }
-
             switch (colIndex) {
                 case 0:
                     value = record.getStringDate();
@@ -56,7 +51,7 @@ public class CashFlowTableModel extends AbstractTableModel {
                     value = Double.toString(record.getPayamentValue());
                     break;
                 case 3:
-                    value = Double.toString(prevBalance + record.getRevenueValue() - record.getPayamentValue());
+                    value = Double.toString(record.getAccumulatedBalance());
                     break;
 
                 default:
