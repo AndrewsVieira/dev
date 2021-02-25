@@ -1,3 +1,10 @@
+/*
+Construa um programa com duas variáveis, uma inteira e
+um ponteiro de inteiro. Atribua valores para as variáveis e
+imprima na tela os seus valores e a soma de seus valores.
+[fixacao4.c]
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
