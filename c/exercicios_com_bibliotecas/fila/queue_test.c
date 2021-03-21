@@ -5,7 +5,7 @@ int main() {
     Queue* queue;
     int elements[] = {1,2,3,4,5,6,7,8,9,10};
     int i;
-    int element;
+    int element;    
 
     queue = create_queue();
     for(i = 0; i <= LENGH; i++) {
@@ -16,7 +16,8 @@ int main() {
         }
     }
 
-    for(i = 0; i <= LENGH; i++) {
+    for (i = 0; i <= LENGH; i++) {
+        if(next(queue, &element)) printf("o próximo é: %d\n", element);
         if(removing(queue, &element)) {
             printf("O número %d saiu da fila\n", element);
         } else {
