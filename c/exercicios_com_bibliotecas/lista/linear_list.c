@@ -1,78 +1,124 @@
 #include <stdlib.h>
-#define LENGHT 10
+#include "linear_list.h"
 
-typedef struct List_ {
-    quantity;
-    elements[LENGHT];
-} List;
+#define FALSE 0
+#define TRUE 1
 
-List *create_list() {
-    List *list = (List *)malloc(sizeof(List));
-    if (list != NULL)
-    {
+struct List_ {
+    int quantity;
+    int elements[LENGTH];
+};
+
+List* create_list() {
+    List *list = (List*)malloc(sizeof(List));
+    if (list != NULL) {
         list->quantity = 0;
     }
     return list;
 }
 
-
-
-int insert_begin(List *list, int element) {
-    if (LENGHT == list->quantity)
-        return 0;
-    for (int i = 0; i < list->quantity; i++) {
-        list->elements[i+1] = list->elements[i];
-    }
-    list->elements[0] = element;
-    return 1;
+void empty(List *list) {
+    list->quantity = 0;
 }
 
-int remove_begin(List *list, int *element) {
-    if (list->quantity > 0)
-    {
-        element = list->elements[0];
-        list->quantity--;
-        for (int i = 0; i < list->quantity; i++)
-        {
-            list->elements[i] = list->elements[i + 1];
+void full(List *list) {
+    list->quantity = LENGTH;
+}
+
+int insert_head(List *list, int element) {
+    if(list->quantity == LENGTH) return FALSE;
+    if(list->quantity > 0) {
+        int i;
+        for(i = list->quantity; i > 0; i--) {
+            list->elements[i] = list->elements[i-1];
         }
-        return 1;
+        list->quantity++;
+        list->elements[0] = element;
+        return TRUE;
+    } else {
+        list->quantity++;
+        list->elements[0] = element;
+        return TRUE;
     }
-    return 0;
 }
 
-int get_begin(List *list, int *element) {
-    if (list->quantity > 0)
-    {
-        element = list->elements[0];
-        return 1;
-    }
-    return 0;
-}
-
-int insert_end(List *list, int element) {
-    if (LENGHT == list->quantity)
-        return 0;
+int insert_tail(List *list, int element) {
+    if(list->quantity == LENGTH) return FALSE;
     list->elements[list->quantity++] = element;
-    return 1;
+    return TRUE;
 }
 
-int remove_end(List *list, int *element) {
-    if (list->quantity > 0)
-    {
-        element = list->elements[--(list->quantity)];
-        return 1;
+int insert_position(List *list, int element, int position) {
+    if(list->quantity == LENGTH) return FALSE;
+    if(list->quantity > 0) {
+        int i;
+        for(i = list->quantity; i > position; i--) {
+            list->elements[i] = list->elements[i-1];
+        }
+        list->quantity++;
+        list->elements[position] = element;
+        return TRUE;
+    } else {
+        return insert_tail(list, element);
     }
-    return 0;
 }
 
-int get_end(List *list, int *element) {
-    if (list->quantity > 0)
-    {
-        element = list->elements[list->quantity -1];
-        return 1;
+int remove_head(List *list, int *element) {
+    int i;
+    if(list->quantity > 0) {
+        *element = list->elements[0];
+        for(i = 0; i < list->quantity; i++) {
+            list->elements[i] = list->elements[i+1];
+        }
+        list->quantity--;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
+}
+
+int remove_tail(List *list, int *element) {
+    if (list->quantity > 0) {
+        *element = list->elements[--(list->quantity)];
+        return TRUE;
+    }
+    return FALSE;    
+}
+
+int remove_position(List *list, int *element, int position) {
+    int i;
+    if(list->quantity > 0) {
+        *element = list->elements[position];
+        for(i = position; i < list->quantity; i++) {
+            list->elements[i] = list->elements[i+1];
+        }
+        list->quantity--;
+        return TRUE;
+    }
+    return FALSE;    
+}
+
+int get_head(List *list, int *element) {
+    if(list->quantity > 0) {
+        *element = list->elements[0];
+        return TRUE;
+    }
+    return FALSE;
+}
+
+int get_tail(List *list, int *element) {
+    if(list->quantity > 0) {
+        *element = list->elements[list->quantity-1];
+        return TRUE;
+    }
+    return FALSE;
+}
+
+int get_position(List *list, int *element, int position) {
+    if(list->quantity > 0) {
+        *element = list->elements[position];
+        return TRUE;
+    }
+    return FALSE;
 }
 
 void free_list(List *list) {
