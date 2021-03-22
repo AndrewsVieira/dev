@@ -3,7 +3,7 @@
 
 struct Deque_ {
     int quantity;
-    int elements[LENGHT];
+    int elements[LENGTH];
 };
 
 Deque *create_deque() {
@@ -15,7 +15,7 @@ Deque *create_deque() {
 }
 
 int insert_begin(Deque *deque, int element) {
-    if(deque->quantity == LENGHT) return 0;
+    if(deque->quantity == LENGTH) return 0;
     if(deque->quantity > 0) {
         int i;
         for(i = deque->quantity; i > 0; i--) {
@@ -52,7 +52,7 @@ int get_begin(Deque *deque, int *element) {
 }
 
 int insert_end(Deque *deque, int element) {
-    if (LENGHT == deque->quantity) return 0;
+    if (LENGTH == deque->quantity) return 0;
     deque->elements[deque->quantity++] = element;
     return 1;
 }

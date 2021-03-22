@@ -11,7 +11,7 @@ int main() {
     deque = create_deque();
 
     // teste início
-    for(i = 0; i <= LENGHT; i++) {
+    for(i = 0; i <= LENGTH; i++) {
         if(insert_begin(deque, elements[i])) {
             printf("inserindo pelo início da fila o elemento %d\n", elements[i]);
          } else {
@@ -19,7 +19,7 @@ int main() {
          }
     }
     
-    for(i = 0; i <= LENGHT; i++) {
+    for(i = 0; i <= LENGTH; i++) {
         if(get_begin(deque, &e)) printf("retirando pelo início o número %d\n", e);
         if(remove_begin(deque, &e)) {
             printf("%d removido pelo início\n", e);
@@ -29,7 +29,7 @@ int main() {
     }
 
     // teste final
-    for(i = 0; i <= LENGHT; i++) {
+    for(i = 0; i <= LENGTH; i++) {
         if(insert_end(deque, elements[i])) {
             printf("inserindo pelo final da fila o elemento %d\n", elements[i]);
          } else {
@@ -37,7 +37,7 @@ int main() {
          }
     }
     
-    for(i = 0; i <= LENGHT; i++) {
+    for(i = 0; i <= LENGTH; i++) {
         if(get_end(deque, &e)) printf("retirando pelo final o número %d\n", e);
         if(remove_end(deque, &e)) {
             printf("%d removido pelo final\n", e);
