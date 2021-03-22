@@ -18,12 +18,14 @@ int insert_begin(Deque *deque, int element) {
     if(deque->quantity == LENGHT) return 0;
     if(deque->quantity > 0) {
         int i;
-        for(i = 0; i < deque->quantity; i++) {
-            deque->elements[i] = deque->elements[i+1];
+        for(i = deque->quantity; i > 0; i--) {
+            deque->elements[i] = deque->elements[i-1];
         }
+        deque->quantity++;
         deque->elements[0] = element;
         return 1;
     } else {
+        deque->quantity++;
         deque->elements[0] = element;
         return 1;
     }
@@ -32,11 +34,10 @@ int insert_begin(Deque *deque, int element) {
 int remove_begin(Deque *deque, int *element) {
     if (deque->quantity > 0) {
         *element = deque->elements[0];
-        deque->quantity--;
-        for (int i = 0; i < deque->quantity; i++)
-        {
+        for (int i = 0; i < deque->quantity; i++) {
             deque->elements[i] = deque->elements[i + 1];
         }
+        deque->quantity--;
         return 1;
     }
     return 0;
