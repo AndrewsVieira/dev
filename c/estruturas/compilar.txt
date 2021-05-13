@@ -1,0 +1,4 @@
+c --> o
+$ gcc -c nome_arquivo.c
+c --> executavel com biblioteca
+$ gcc nome_arquivo.c outro_arquivo.o [outro_arquivo_1.o ...] -o nome_arquivo_executavel

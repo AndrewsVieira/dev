@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "linear_deque.h": "c",
+        "*.tcc": "c",
+        "functional": "c",
+        "fstream": "c",
+        "istream": "c",
+        "streambuf": "c",
+        "new": "c",
+        "sstream": "c",
+        "utility": "c",
+        "deque": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

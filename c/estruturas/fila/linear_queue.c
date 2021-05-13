@@ -16,7 +16,7 @@ Queue* create_queue() {
     }
     return queue;
 }
-int insert(Queue *queue, int element) {
+int inserting(Queue *queue, int element) {
     if(queue->quantity == LENGH) return FALSE;
     queue->elements[queue->quantity++] = element;
     return TRUE;

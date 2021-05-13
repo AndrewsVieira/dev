@@ -1,4 +1,4 @@
-#define LENGHT 10
+#define LENGTH 10
 
 typedef struct Deque_ Deque;
 Deque* create_deque();
