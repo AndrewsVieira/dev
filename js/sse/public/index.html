@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados de memória</title>
+</head>
+
+<body>
+    <div id="main"></div>
+    <script>
+        url = "http://127.0.0.1:3000/eventstream"
+        const evtSource = new EventSource(url)
+        const main = document.querySelector("#main")
+
+        evtSource.onmessage = function (e) {
+            let dados = JSON.parse(e.data)
+            main.innerHTML = `<p>Memória total: ${dados.total}</p><p>Memória usada: ${dados.used}</p><p>Memória livre: ${dados.free}</p>`
+            console.log(dados)
+        }
+    </script>
+</body>
+
+</html>

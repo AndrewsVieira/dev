@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+
+<body>
+    <div id="chat"></div>
+    <div id="caixa_texto">
+        <input type="mensagem" id="mensagem">
+        <button id="btn_enviar" onclick="enviar(document.getElementById('mensagem').value)">Enviar</button>
+    </div>
+
+    <script>
+        var msgs_log_enviadas = ""
+        var url = "ws://127.0.0.1:8080/"
+        ws = new WebSocket(url)
+
+        function enviar(mensagem) {
+            console.log(`Mensagem: ${mensagem}`)
+            ws.send(mensagem)
+        }
+
+        ws.onmessage = function (e) {
+            let txtmsg = document.getElementById("chat")
+            txtmsg.innerHTML = `<p>${e.data}</p>`
+        }
+
+        function msgs(msg) {
+            msgs_log_enviadas += msg
+        }
+
+    </script>
+</body>
+
+</html>
